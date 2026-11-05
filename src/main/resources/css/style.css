@@ -333,3 +333,85 @@
 .scroll-bar .track {
     -fx-background-color: transparent;
 }
+
+/* ==========================================
+   10. In-App Modern Floating Toast Notifications
+   ========================================== */
+.toast-card {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 9px;
+    -fx-border-radius: 9px;
+    -fx-border-width: 1px 1px 1px 5px;
+    -fx-padding: 12px 16px;
+    -fx-min-width: 320px;
+    -fx-max-width: 440px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.12), 12, 0.1, 0, 4);
+    -fx-cursor: hand;
+}
+
+.toast-success {
+    -fx-border-color: #DFE5E1 #DFE5E1 #DFE5E1 #10B981;
+}
+
+.toast-success .toast-icon {
+    -fx-text-fill: #10B981;
+    -fx-font-size: 16px;
+    -fx-font-weight: 900;
+}
+
+.toast-error {
+    -fx-border-color: #DFE5E1 #DFE5E1 #DFE5E1 #EF4444;
+}
+
+.toast-error .toast-icon {
+    -fx-text-fill: #EF4444;
+    -fx-font-size: 16px;
+    -fx-font-weight: 900;
+}
+
+.toast-warning {
+    -fx-border-color: #DFE5E1 #DFE5E1 #DFE5E1 #F59E0B;
+}
+
+.toast-warning .toast-icon {
+    -fx-text-fill: #F59E0B;
+    -fx-font-size: 16px;
+    -fx-font-weight: 900;
+}
+
+.toast-info {
+    -fx-border-color: #DFE5E1 #DFE5E1 #DFE5E1 #3B82F6;
+}
+
+.toast-info .toast-icon {
+    -fx-text-fill: #3B82F6;
+    -fx-font-size: 16px;
+    -fx-font-weight: 900;
+}
+
+.toast-title {
+    -fx-font-size: 13px;
+    -fx-font-weight: 800;
+    -fx-text-fill: #143D2B;
+}
+
+.toast-message {
+    -fx-font-size: 12px;
+    -fx-text-fill: #4B5E53;
+}
+
+.toast-close-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #9CA3AF;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-padding: 2px 6px;
+}
+
+.toast-close-btn:hover {
+    -fx-text-fill: #374151;
+    -fx-background-color: #F3F4F6;
+    -fx-background-radius: 4px;
+}
+

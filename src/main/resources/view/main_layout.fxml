@@ -10,77 +10,87 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefHeight="750.0" prefWidth="1200.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.vishmibakehouse.controller.MainLayoutController">
-   <!-- Left Sidebar -->
-   <left>
-      <VBox prefWidth="230.0" spacing="4.0" styleClass="sidebar" BorderPane.alignment="CENTER">
-         <children>
-            <!-- Brand -->
-            <VBox spacing="2.0">
+<StackPane fx:id="mainRootPane" prefHeight="750.0" prefWidth="1200.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.vishmibakehouse.controller.MainLayoutController">
+   <children>
+      <BorderPane prefHeight="750.0" prefWidth="1200.0">
+         <!-- Left Sidebar -->
+         <left>
+            <VBox prefWidth="230.0" spacing="4.0" styleClass="sidebar" BorderPane.alignment="CENTER">
                <children>
-                  <Label styleClass="brand-title" text="VISHMI" />
-                  <Label styleClass="brand-subtitle" text="BAKEHOUSE SYSTEM" />
-               </children>
-               <VBox.margin>
-                  <Insets bottom="16.0" left="6.0" top="6.0" />
-               </VBox.margin>
-            </VBox>
-
-            <!-- Navigation Buttons in ScrollPane -->
-            <ScrollPane fitToWidth="true" hbarPolicy="NEVER" style="-fx-background: transparent; -fx-background-color: transparent;" vbarPolicy="AS_NEEDED" VBox.vgrow="ALWAYS">
-               <content>
-                  <VBox spacing="3.0">
+                  <!-- Brand -->
+                  <VBox spacing="2.0">
                      <children>
-                        <Button fx:id="btnNavDashboard" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNavDashboard" styleClass="nav-button" text="📊  Dashboard" />
-                        <Button fx:id="btnNavProducts" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNavProducts" styleClass="nav-button" text="🍞  Products" />
-                        <Button fx:id="btnNavProduction" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNavProduction" styleClass="nav-button" text="⚙️  Production" />
-                        <Button fx:id="btnNavIngredients" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNavIngredients" styleClass="nav-button" text="🌾  Ingredients" />
-                        <Button fx:id="btnNavPurchases" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNavPurchases" styleClass="nav-button" text="🛒  Purchases" />
-                        <Button fx:id="btnNavUsage" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNavUsage" styleClass="nav-button" text="🥣  Ingredient Usage" />
-                        <Button fx:id="btnNavOutletSales" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNavOutletSales" styleClass="nav-button" text="💳  Outlet Sales (POS)" />
-                        <Button fx:id="btnNavPacking" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNavPacking" styleClass="nav-button" text="📦  Packing &amp; Dispatch" />
-                        <Button fx:id="btnNavDeliveries" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNavDeliveries" styleClass="nav-button" text="🛺  Deliveries" />
-                        <Button fx:id="btnNavSpecialOrders" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNavSpecialOrders" styleClass="nav-button" text="🎂  Special Orders" />
-                        <Button fx:id="btnNavLeftovers" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNavLeftovers" styleClass="nav-button" text="♻️  Leftovers &amp; Crumbs" />
-                        <Button fx:id="btnNavEmployees" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNavEmployees" styleClass="nav-button" text="👥  Employees &amp; Users" />
-                        <Button fx:id="btnNavReports" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNavReports" styleClass="nav-button" text="📈  Reports &amp; Analytics" />
+                        <Label styleClass="brand-title" text="VISHMI" />
+                        <Label styleClass="brand-subtitle" text="BAKEHOUSE SYSTEM" />
                      </children>
+                     <VBox.margin>
+                        <Insets bottom="16.0" left="6.0" top="6.0" />
+                     </VBox.margin>
                   </VBox>
-               </content>
-            </ScrollPane>
 
-            <!-- Logout button at bottom -->
-            <VBox>
-               <children>
-                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleLogout" style="-fx-background-color: #2F694F; -fx-text-fill: white; -fx-background-radius: 6px; -fx-padding: 8px;" text="🚪  Log Out" />
+                  <!-- Navigation Buttons in ScrollPane -->
+                  <ScrollPane fitToWidth="true" hbarPolicy="NEVER" style="-fx-background: transparent; -fx-background-color: transparent;" vbarPolicy="AS_NEEDED" VBox.vgrow="ALWAYS">
+                     <content>
+                        <VBox spacing="3.0">
+                           <children>
+                              <Button fx:id="btnNavDashboard" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNavDashboard" styleClass="nav-button" text="📊  Dashboard" />
+                              <Button fx:id="btnNavProducts" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNavProducts" styleClass="nav-button" text="🍞  Products" />
+                              <Button fx:id="btnNavProduction" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNavProduction" styleClass="nav-button" text="⚙️  Production" />
+                              <Button fx:id="btnNavIngredients" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNavIngredients" styleClass="nav-button" text="🌾  Ingredients" />
+                              <Button fx:id="btnNavPurchases" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNavPurchases" styleClass="nav-button" text="🛒  Purchases" />
+                              <Button fx:id="btnNavUsage" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNavUsage" styleClass="nav-button" text="🥣  Ingredient Usage" />
+                              <Button fx:id="btnNavOutletSales" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNavOutletSales" styleClass="nav-button" text="💳  Outlet Sales (POS)" />
+                              <Button fx:id="btnNavPacking" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNavPacking" styleClass="nav-button" text="📦  Packing &amp; Dispatch" />
+                              <Button fx:id="btnNavDeliveries" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNavDeliveries" styleClass="nav-button" text="🛺  Deliveries" />
+                              <Button fx:id="btnNavSpecialOrders" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNavSpecialOrders" styleClass="nav-button" text="🎂  Special Orders" />
+                              <Button fx:id="btnNavLeftovers" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNavLeftovers" styleClass="nav-button" text="♻️  Leftovers &amp; Crumbs" />
+                              <Button fx:id="btnNavEmployees" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNavEmployees" styleClass="nav-button" text="👥  Employees &amp; Users" />
+                              <Button fx:id="btnNavReports" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNavReports" styleClass="nav-button" text="📈  Reports &amp; Analytics" />
+                           </children>
+                        </VBox>
+                     </content>
+                  </ScrollPane>
+
+                  <!-- Logout button at bottom -->
+                  <VBox>
+                     <children>
+                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleLogout" style="-fx-background-color: #2F694F; -fx-text-fill: white; -fx-background-radius: 6px; -fx-padding: 8px;" text="🚪  Log Out" />
+                     </children>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </VBox>
                </children>
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
             </VBox>
-         </children>
-      </VBox>
-   </left>
+         </left>
 
-   <!-- Top Bar -->
-   <top>
-      <HBox alignment="CENTER_LEFT" prefHeight="55.0" styleClass="top-bar" BorderPane.alignment="CENTER">
-         <children>
-            <Label fx:id="lblPageHeader" styleClass="section-header" text="Dashboard Overview" />
-            <Pane HBox.hgrow="ALWAYS" />
-            <HBox alignment="CENTER" spacing="12.0">
+         <!-- Top Bar -->
+         <top>
+            <HBox alignment="CENTER_LEFT" prefHeight="55.0" styleClass="top-bar" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="lblCurrentUser" style="-fx-font-weight: bold; -fx-text-fill: #1E4D37;" text="User" />
-                  <Label fx:id="lblUserRole" styleClass="user-badge" text="ROLE" />
+                  <Label fx:id="lblPageHeader" styleClass="section-header" text="Dashboard Overview" />
+                  <Pane HBox.hgrow="ALWAYS" />
+                  <HBox alignment="CENTER" spacing="12.0">
+                     <children>
+                        <Label fx:id="lblCurrentUser" style="-fx-font-weight: bold; -fx-text-fill: #1E4D37;" text="User" />
+                        <Label fx:id="lblUserRole" styleClass="user-badge" text="ROLE" />
+                     </children>
+                  </HBox>
                </children>
             </HBox>
-         </children>
-      </HBox>
-   </top>
+         </top>
 
-   <!-- Center Dynamic View Pane -->
-   <center>
-      <StackPane fx:id="centerContentPane" style="-fx-background-color: #F4F6F3;" BorderPane.alignment="CENTER" />
-   </center>
-</BorderPane>
+         <!-- Center Dynamic View Pane -->
+         <center>
+            <StackPane fx:id="centerContentPane" style="-fx-background-color: #F4F6F3;" BorderPane.alignment="CENTER" />
+         </center>
+      </BorderPane>
 
+      <!-- In-App Floating Notification Layer -->
+      <VBox fx:id="notificationBox" alignment="TOP_RIGHT" pickOnBounds="false" spacing="10.0" StackPane.alignment="TOP_RIGHT">
+         <padding>
+            <Insets right="28.0" top="65.0" />
+         </padding>
+      </VBox>
+   </children>
+</StackPane>

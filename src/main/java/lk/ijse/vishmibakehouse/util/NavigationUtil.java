@@ -17,6 +17,10 @@ public class NavigationUtil {
         primaryStage = stage;
     }
 
+    public static Stage getPrimaryStage() {
+        return primaryStage;
+    }
+
     public static void setContentPane(Pane pane) {
         contentPane = pane;
     }

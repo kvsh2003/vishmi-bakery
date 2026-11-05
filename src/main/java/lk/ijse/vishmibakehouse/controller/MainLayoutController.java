@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import lk.ijse.vishmibakehouse.dto.UserAccountDTO;
 import lk.ijse.vishmibakehouse.util.AlertUtil;
 import lk.ijse.vishmibakehouse.util.NavigationUtil;
@@ -25,6 +26,9 @@ public class MainLayoutController {
 
     @FXML
     private StackPane centerContentPane;
+
+    @FXML
+    private VBox notificationBox;
 
     @FXML
     private Button btnNavDashboard;
@@ -56,6 +60,7 @@ public class MainLayoutController {
     @FXML
     public void initialize() {
         NavigationUtil.setContentPane(centerContentPane);
+        AlertUtil.setNotificationContainer(notificationBox);
 
         UserAccountDTO user = SecurityContext.getCurrentUser();
         if (user != null) {
