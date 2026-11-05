@@ -6,3 +6,5 @@ target/
 *.iml
 .vscode/
 *.log
+*_text.txt
+
