@@ -1,17 +1,22 @@
 package lk.ijse.vishmibakehouse;
 
+import javafx.application.Platform;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import lk.ijse.vishmibakehouse.bo.BOFactory;
 import lk.ijse.vishmibakehouse.bo.BOTypes;
 import lk.ijse.vishmibakehouse.bo.custom.*;
 import lk.ijse.vishmibakehouse.db.DBConnection;
 import lk.ijse.vishmibakehouse.dto.*;
 import net.sf.jasperreports.engine.*;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.InputStream;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
@@ -20,6 +25,15 @@ import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class FullSystemVerificationTest {
+
+    @BeforeAll
+    static void initJavaFX() {
+        try {
+            Platform.startup(() -> {});
+        } catch (IllegalStateException ignored) {
+            // JavaFX Platform already initialized
+        }
+    }
 
     @Test
     @DisplayName("Verify Database Tables and Views")
@@ -147,15 +161,14 @@ public class FullSystemVerificationTest {
                 "/view/14-reports.fxml"
         };
 
-        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-        dbf.setNamespaceAware(true);
-        DocumentBuilder db = dbf.newDocumentBuilder();
-
         for (String path : fxmlFiles) {
-            try (InputStream in = getClass().getResourceAsStream(path)) {
-                assertNotNull(in, "FXML file missing: " + path);
-                assertDoesNotThrow(() -> db.parse(in), "FXML contains invalid XML: " + path);
-            }
+            URL url = getClass().getResource(path);
+            assertNotNull(url, "FXML file missing: " + path);
+            assertDoesNotThrow(() -> {
+                FXMLLoader loader = new FXMLLoader(url);
+                Parent root = loader.load();
+                assertNotNull(root, "Loaded root must not be null for: " + path);
+            }, "FXML parsing or controller instantiation failed for: " + path);
         }
     }
 
