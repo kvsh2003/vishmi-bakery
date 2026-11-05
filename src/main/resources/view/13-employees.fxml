@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="680.0" prefWidth="950.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.vishmibakehouse.controller.EmployeesController">
+   <children>
+      <VBox spacing="16.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="20.0">
+         <children>
+            <VBox spacing="2.0">
+               <children>
+                  <Label styleClass="page-title" text="Employees &amp; access" />
+                  <Label styleClass="page-subtitle" text="Manage bakery staff personnel records, assign operational work roles, and configure secure user accounts." />
+               </children>
+            </VBox>
+
+            <!-- Dual Forms: Employee Details & System Login Account -->
+            <HBox spacing="16.0">
+               <children>
+                  <!-- Form 1: Employee Personnel -->
+                  <VBox prefWidth="440.0" spacing="10.0" styleClass="card" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label styleClass="section-header" text="Staff Personnel Details" />
+                        <GridPane hgap="12.0" vgap="8.0">
+                           <children>
+                              <VBox spacing="4.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                 <children>
+                                    <Label styleClass="field-label" text="Full Name *" />
+                                    <TextField fx:id="txtEmpName" promptText="e.g. Sunil Perera" />
+                                 </children>
+                              </VBox>
+                              <VBox spacing="4.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                 <children>
+                                    <Label styleClass="field-label" text="Phone Number *" />
+                                    <TextField fx:id="txtEmpPhone" promptText="077xxxxxxx" />
+                                 </children>
+                              </VBox>
+                              <VBox spacing="4.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                                 <children>
+                                    <Label styleClass="field-label" text="Residential Address" />
+                                    <TextField fx:id="txtEmpAddress" promptText="Address details" />
+                                 </children>
+                              </VBox>
+                              <VBox spacing="4.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <children>
+                                    <Label styleClass="field-label" text="Job Role *" />
+                                    <ComboBox fx:id="cmbJobRole" maxWidth="1.7976931348623157E308" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </GridPane>
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                           <children>
+                              <CheckBox fx:id="chkEmpActive" mnemonicParsing="false" selected="true" text="Active employee" />
+                              <Pane HBox.hgrow="ALWAYS" />
+                              <Button mnemonicParsing="false" onAction="#handleSaveEmployee" styleClass="btn-primary" text="Save Staff" />
+                              <Button mnemonicParsing="false" onAction="#handleClearEmployee" styleClass="btn-secondary" text="Clear" />
+                           </children>
+                           <VBox.margin>
+                              <Insets top="4.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                  </VBox>
+
+                  <!-- Form 2: System Login Account -->
+                  <VBox prefWidth="440.0" spacing="10.0" styleClass="card" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label styleClass="section-header" text="System Account Credentials" />
+                        <GridPane hgap="12.0" vgap="8.0">
+                           <children>
+                              <VBox spacing="4.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                 <children>
+                                    <Label styleClass="field-label" text="Select Employee *" />
+                                    <ComboBox fx:id="cmbAccountEmployee" maxWidth="1.7976931348623157E308" promptText="Choose employee" />
+                                 </children>
+                              </VBox>
+                              <VBox spacing="4.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                 <children>
+                                    <Label styleClass="field-label" text="Login Username *" />
+                                    <TextField fx:id="txtUsername" promptText="e.g. sunil.p" />
+                                 </children>
+                              </VBox>
+                              <VBox spacing="4.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                                 <children>
+                                    <Label styleClass="field-label" text="Password *" />
+                                    <PasswordField fx:id="txtAccountPassword" promptText="Min 8 characters" />
+                                 </children>
+                              </VBox>
+                              <VBox spacing="4.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <children>
+                                    <Label styleClass="field-label" text="Access Permission Role *" />
+                                    <ComboBox fx:id="cmbAccessRole" maxWidth="1.7976931348623157E308" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </GridPane>
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                           <children>
+                              <CheckBox fx:id="chkAccountActive" mnemonicParsing="false" selected="true" text="Account enabled" />
+                              <Pane HBox.hgrow="ALWAYS" />
+                              <Button mnemonicParsing="false" onAction="#handleSaveAccount" styleClass="btn-primary" text="Grant System Access" />
+                           </children>
+                           <VBox.margin>
+                              <Insets top="4.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+
+            <!-- Table Card: Employee Roster -->
+            <VBox spacing="10.0" styleClass="card" VBox.vgrow="ALWAYS">
+               <children>
+                  <Label styleClass="section-header" text="Staff Roster &amp; Assigned Roles" />
+                  <TableView fx:id="tblEmployees" VBox.vgrow="ALWAYS">
+                     <columns>
+                        <TableColumn fx:id="colEmpId" prefWidth="50.0" text="ID" />
+                        <TableColumn fx:id="colEmpName" prefWidth="180.0" text="Full Name" />
+                        <TableColumn fx:id="colEmpPhone" prefWidth="120.0" text="Phone" />
+                        <TableColumn fx:id="colEmpAddress" prefWidth="200.0" text="Address" />
+                        <TableColumn fx:id="colEmpRole" prefWidth="130.0" text="Job Role" />
+                        <TableColumn fx:id="colEmpActive" prefWidth="80.0" text="Active" />
+                     </columns>
+                  </TableView>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

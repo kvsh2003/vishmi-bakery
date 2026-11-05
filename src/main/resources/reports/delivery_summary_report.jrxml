@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+              name="delivery_summary_report" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+    <queryString>
+        <![CDATA[SELECT delivery_id, shop_name, registration_no, delivery_staff, delivery_date, status, packed_qty, delivered_qty FROM v_delivery_summary ORDER BY delivery_date DESC, delivery_id DESC]]>
+    </queryString>
+    <field name="delivery_id" class="java.lang.Long"/>
+    <field name="shop_name" class="java.lang.String"/>
+    <field name="registration_no" class="java.lang.String"/>
+    <field name="delivery_staff" class="java.lang.String"/>
+    <field name="delivery_date" class="java.sql.Date"/>
+    <field name="status" class="java.lang.String"/>
+    <field name="packed_qty" class="java.math.BigDecimal"/>
+    <field name="delivered_qty" class="java.math.BigDecimal"/>
+    <title>
+        <band height="65">
+            <rectangle>
+                <reportElement x="0" y="0" width="555" height="55" backcolor="#1E4D37"/>
+            </rectangle>
+            <staticText>
+                <reportElement x="15" y="8" width="300" height="22" forecolor="#FFFFFF"/>
+                <textElement><font size="16" isBold="true"/></textElement>
+                <text><![CDATA[VISHMI BAKEHOUSE]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="15" y="30" width="300" height="16" forecolor="#D0E3D8"/>
+                <textElement><font size="10"/></textElement>
+                <text><![CDATA[Wholesale Shop Deliveries & Distribution Summary]]></text>
+            </staticText>
+        </band>
+    </title>
+    <columnHeader>
+        <band height="25">
+            <rectangle>
+                <reportElement x="0" y="0" width="555" height="22" backcolor="#F4F6F3"/>
+            </rectangle>
+            <staticText>
+                <reportElement x="5" y="4" width="40" height="16"/>
+                <textElement><font isBold="true"/></textElement>
+                <text><![CDATA[ID]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="50" y="4" width="130" height="16"/>
+                <textElement><font isBold="true"/></textElement>
+                <text><![CDATA[Shop Name]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="185" y="4" width="90" height="16"/>
+                <textElement><font isBold="true"/></textElement>
+                <text><![CDATA[Vehicle]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="280" y="4" width="100" height="16"/>
+                <textElement><font isBold="true"/></textElement>
+                <text><![CDATA[Driver]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="385" y="4" width="50" height="16"/>
+                <textElement textAlignment="Right"><font isBold="true"/></textElement>
+                <text><![CDATA[Packed]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="440" y="4" width="50" height="16"/>
+                <textElement textAlignment="Right"><font isBold="true"/></textElement>
+                <text><![CDATA[Delivered]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="495" y="4" width="55" height="16"/>
+                <textElement textAlignment="Right"><font isBold="true"/></textElement>
+                <text><![CDATA[Status]]></text>
+            </staticText>
+        </band>
+    </columnHeader>
+    <detail>
+        <band height="22">
+            <textField>
+                <reportElement x="5" y="3" width="40" height="16"/>
+                <textFieldExpression><![CDATA[$F{delivery_id}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="50" y="3" width="130" height="16"/>
+                <textFieldExpression><![CDATA[$F{shop_name}]]></textFieldExpression>
+            </textField>
+            <textField isBlankWhenNull="true">
+                <reportElement x="185" y="3" width="90" height="16"/>
+                <textFieldExpression><![CDATA[$F{registration_no} != null ? $F{registration_no} : "--"]]></textFieldExpression>
+            </textField>
+            <textField isBlankWhenNull="true">
+                <reportElement x="280" y="3" width="100" height="16"/>
+                <textFieldExpression><![CDATA[$F{delivery_staff} != null ? $F{delivery_staff} : "--"]]></textFieldExpression>
+            </textField>
+            <textField pattern="#,##0">
+                <reportElement x="385" y="3" width="50" height="16"/>
+                <textElement textAlignment="Right"/>
+                <textFieldExpression><![CDATA[$F{packed_qty}]]></textFieldExpression>
+            </textField>
+            <textField pattern="#,##0">
+                <reportElement x="440" y="3" width="50" height="16"/>
+                <textElement textAlignment="Right"/>
+                <textFieldExpression><![CDATA[$F{delivered_qty}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="495" y="3" width="55" height="16"/>
+                <textElement textAlignment="Right"/>
+                <textFieldExpression><![CDATA[$F{status}]]></textFieldExpression>
+            </textField>
+            <line>
+                <reportElement x="0" y="21" width="555" height="1" forecolor="#E2E8E4"/>
+            </line>
+        </band>
+    </detail>
+</jasperReport>

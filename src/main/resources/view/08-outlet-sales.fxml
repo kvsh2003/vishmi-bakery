@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="680.0" prefWidth="950.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.vishmibakehouse.controller.OutletSalesController">
+   <children>
+      <VBox spacing="16.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="20.0">
+         <children>
+            <VBox spacing="2.0">
+               <children>
+                  <Label styleClass="page-title" text="Outlet sales" />
+                  <Label styleClass="page-subtitle" text="Cashier point-of-sale for retail counter orders, cash settlement, and receipt generation." />
+               </children>
+            </VBox>
+
+            <HBox spacing="18.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <!-- Left Side: Item Selection & Cart Table -->
+                  <VBox spacing="12.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <!-- Item Picker Card -->
+                        <VBox spacing="10.0" styleClass="card">
+                           <children>
+                              <Label styleClass="section-header" text="Add Items to Sale" />
+                              <GridPane hgap="12.0" vgap="10.0">
+                                 <children>
+                                    <VBox spacing="4.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                       <children>
+                                          <Label styleClass="field-label" text="Select Product *" />
+                                          <ComboBox fx:id="cmbProduct" maxWidth="1.7976931348623157E308" promptText="Choose bakery product" />
+                                       </children>
+                                    </VBox>
+                                    <VBox spacing="4.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                       <children>
+                                          <Label styleClass="field-label" text="Available Stock" />
+                                          <Label fx:id="lblAvailableStock" style="-fx-font-weight: bold; -fx-text-fill: #1E4D37;" text="--">
+                                             <VBox.margin>
+                                                <Insets top="6.0" />
+                                             </VBox.margin>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                    <VBox spacing="4.0" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                                       <children>
+                                          <Label styleClass="field-label" text="Unit Price (LKR)" />
+                                          <TextField fx:id="txtUnitPrice" editable="false" promptText="0.00" />
+                                       </children>
+                                    </VBox>
+                                    <VBox spacing="4.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                                       <children>
+                                          <Label styleClass="field-label" text="Quantity *" />
+                                          <TextField fx:id="txtQuantity" promptText="e.g. 2" />
+                                       </children>
+                                    </VBox>
+                                    <HBox alignment="BOTTOM_LEFT" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1">
+                                       <children>
+                                          <Button mnemonicParsing="false" onAction="#handleAddToCart" styleClass="btn-primary" text="➕ Add to Sale Cart" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </GridPane>
+                           </children>
+                        </VBox>
+
+                        <!-- Cart Table Card -->
+                        <VBox spacing="10.0" styleClass="card" VBox.vgrow="ALWAYS">
+                           <children>
+                              <HBox alignment="CENTER_LEFT">
+                                 <children>
+                                    <Label styleClass="section-header" text="Current Sale Items" />
+                                    <HBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Button mnemonicParsing="false" onAction="#handleRemoveItem" styleClass="btn-danger" text="🗑️ Remove Selected" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </HBox>
+                              <TableView fx:id="tblCart" VBox.vgrow="ALWAYS">
+                                 <columns>
+                                    <TableColumn fx:id="colCartProduct" prefWidth="200.0" text="Product" />
+                                    <TableColumn fx:id="colCartQty" prefWidth="80.0" text="Qty" />
+                                    <TableColumn fx:id="colCartPrice" prefWidth="110.0" text="Price (LKR)" />
+                                    <TableColumn fx:id="colCartTotal" prefWidth="120.0" text="Line Total (LKR)" />
+                                 </columns>
+                              </TableView>
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+
+                  <!-- Right Side: Order Summary & Checkout Card -->
+                  <VBox prefWidth="320.0" spacing="16.0" styleClass="card">
+                     <children>
+                        <Label styleClass="section-header" text="Payment Settlement" />
+                        <VBox spacing="4.0">
+                           <children>
+                              <Label styleClass="field-label" text="Cashier Staff" />
+                              <ComboBox fx:id="cmbCashier" maxWidth="1.7976931348623157E308" />
+                           </children>
+                        </VBox>
+                        <VBox spacing="4.0" style="-fx-background-color: #EBF4F0; -fx-padding: 12px; -fx-background-radius: 6px;">
+                           <children>
+                              <Label styleClass="metric-title" text="NET TOTAL AMOUNT" />
+                              <Label fx:id="lblGrandTotal" style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #1E4D37;" text="LKR 0.00" />
+                           </children>
+                        </VBox>
+                        <VBox spacing="4.0">
+                           <children>
+                              <Label styleClass="field-label" text="Cash Received (LKR) *" />
+                              <TextField fx:id="txtCashReceived" promptText="0.00" style="-fx-font-size: 15px; -fx-font-weight: bold;" />
+                           </children>
+                        </VBox>
+                        <VBox spacing="4.0" style="-fx-background-color: #F8FAF9; -fx-padding: 12px; -fx-background-radius: 6px; -fx-border-color: #DCE3DC; -fx-border-radius: 6px;">
+                           <children>
+                              <Label styleClass="metric-title" text="CHANGE TO RETURN" />
+                              <Label fx:id="lblChange" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #276247;" text="LKR 0.00" />
+                           </children>
+                        </VBox>
+                        <VBox spacing="10.0">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                           <children>
+                              <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleCompleteSale" prefHeight="42.0" styleClass="btn-primary" text="✅ Complete Sale &amp; Print Receipt" />
+                              <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleClearOrder" styleClass="btn-secondary" text="Clear Order" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="680.0" prefWidth="950.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.vishmibakehouse.controller.IngredientsController">
+   <children>
+      <VBox spacing="16.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="20.0">
+         <children>
+            <VBox spacing="2.0">
+               <children>
+                  <Label styleClass="page-title" text="Ingredient stock" />
+                  <Label styleClass="page-subtitle" text="Raw material master records, measurement units, reorder levels, and available inventory." />
+               </children>
+            </VBox>
+
+            <!-- Form Card -->
+            <VBox spacing="12.0" styleClass="card">
+               <children>
+                  <GridPane hgap="16.0" vgap="12.0">
+                     <children>
+                        <VBox spacing="4.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                           <children>
+                              <Label styleClass="field-label" text="Ingredient Name *" />
+                              <TextField fx:id="txtName" promptText="e.g. Wheat Flour, Yeast" />
+                           </children>
+                        </VBox>
+                        <VBox spacing="4.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                           <children>
+                              <Label styleClass="field-label" text="Stock Unit *" />
+                              <ComboBox fx:id="cmbUnit" maxWidth="1.7976931348623157E308" />
+                           </children>
+                        </VBox>
+                        <VBox spacing="4.0" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                           <children>
+                              <Label styleClass="field-label" text="Reorder Level Threshold *" />
+                              <TextField fx:id="txtReorderLevel" promptText="e.g. 50.0" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER_LEFT" spacing="4.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                           <children>
+                              <Label styleClass="field-label" text="Active Status" />
+                              <CheckBox fx:id="chkActive" mnemonicParsing="false" selected="true" text="Active ingredient in recipes">
+                                 <VBox.margin>
+                                    <Insets top="6.0" />
+                                 </VBox.margin>
+                              </CheckBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </GridPane>
+
+                  <!-- Buttons -->
+                  <HBox spacing="10.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#handleSave" styleClass="btn-primary" text="Save Ingredient" />
+                        <Button mnemonicParsing="false" onAction="#handleUpdate" styleClass="btn-secondary" text="Update" />
+                        <Button mnemonicParsing="false" onAction="#handleDelete" styleClass="btn-danger" text="Deactivate" />
+                        <Button mnemonicParsing="false" onAction="#handleClear" styleClass="btn-secondary" text="Clear Form" />
+                     </children>
+                     <VBox.margin>
+                        <Insets top="6.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+
+            <!-- Table Card -->
+            <VBox spacing="10.0" styleClass="card" VBox.vgrow="ALWAYS">
+               <children>
+                  <Label styleClass="section-header" text="Current Stock Levels &amp; Availability" />
+                  <TableView fx:id="tblIngredients" VBox.vgrow="ALWAYS">
+                     <columns>
+                        <TableColumn fx:id="colId" prefWidth="60.0" text="ID" />
+                        <TableColumn fx:id="colName" prefWidth="200.0" text="Ingredient" />
+                        <TableColumn fx:id="colUnit" prefWidth="70.0" text="Unit" />
+                        <TableColumn fx:id="colPurchased" prefWidth="120.0" text="Purchased Qty" />
+                        <TableColumn fx:id="colUsed" prefWidth="110.0" text="Used Qty" />
+                        <TableColumn fx:id="colAvailable" prefWidth="120.0" text="Available Stock" />
+                        <TableColumn fx:id="colReorder" prefWidth="110.0" text="Reorder Level" />
+                        <TableColumn fx:id="colStatus" prefWidth="100.0" text="Stock Status" />
+                     </columns>
+                  </TableView>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

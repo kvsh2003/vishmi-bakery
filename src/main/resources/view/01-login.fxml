@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1050.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.vishmibakehouse.controller.LoginController">
+   <children>
+      <HBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <!-- Left Branding Pane -->
+            <VBox alignment="CENTER_LEFT" prefWidth="420.0" spacing="20.0" style="-fx-background-color: #1E4D37;" HBox.hgrow="NEVER">
+               <padding>
+                  <Insets bottom="60.0" left="50.0" right="50.0" top="60.0" />
+               </padding>
+               <children>
+                  <Label style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: white;" text="VISHMI" />
+                  <Label style="-fx-font-size: 14px; -fx-text-fill: #A0C4B4; -fx-font-weight: bold;" text="BAKEHOUSE" />
+                  <VBox spacing="10.0">
+                     <VBox.margin>
+                        <Insets top="40.0" />
+                     </VBox.margin>
+                     <children>
+                        <Label style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: white;" text="A simpler day&#10;at the bakery." wrapText="true" />
+                        <Label style="-fx-font-size: 13px; -fx-text-fill: #97BBAA;" text="Production • Sales • Stock • Deliveries" />
+                     </children>
+                  </VBox>
+                  <Label style="-fx-font-size: 11px; -fx-text-fill: #6E9B85;" text="Vishmi Bakehouse Management System v1.0&#10;HDSE ITS1066 Standalone Edition">
+                     <VBox.margin>
+                        <Insets top="120.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
+
+            <!-- Right Login Form Pane -->
+            <VBox alignment="CENTER" style="-fx-background-color: #F4F6F3;" HBox.hgrow="ALWAYS">
+               <children>
+                  <VBox maxWidth="400.0" spacing="16.0" styleClass="card">
+                     <padding>
+                        <Insets bottom="32.0" left="32.0" right="32.0" top="32.0" />
+                     </padding>
+                     <children>
+                        <VBox spacing="4.0">
+                           <children>
+                              <Label style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #1E4D37;" text="Welcome back" />
+                              <Label style="-fx-font-size: 12px; -fx-text-fill: #6B7B73;" text="Sign in with your staff account" />
+                           </children>
+                        </VBox>
+                        <VBox spacing="6.0">
+                           <children>
+                              <Label styleClass="field-label" text="Username" />
+                              <TextField fx:id="txtUsername" promptText="e.g. admin, manager, sales" />
+                           </children>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </VBox>
+                        <VBox spacing="6.0">
+                           <children>
+                              <Label styleClass="field-label" text="Password" />
+                              <PasswordField fx:id="txtPassword" promptText="Enter your account password" />
+                           </children>
+                        </VBox>
+                        <Label fx:id="lblError" style="-fx-text-fill: #DC2626; -fx-font-size: 12px;" visible="false" wrapText="true" />
+                        <Button fx:id="btnLogin" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleLogin" styleClass="btn-primary" text="Sign in" />
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" style="-fx-font-size: 11px; -fx-text-fill: #8E9E96;" text="Default seed: admin / admin123" />
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

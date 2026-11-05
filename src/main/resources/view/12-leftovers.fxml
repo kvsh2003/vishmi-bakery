@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="680.0" prefWidth="950.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.vishmibakehouse.controller.LeftoversController">
+   <children>
+      <VBox spacing="16.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="20.0">
+         <children>
+            <VBox spacing="2.0">
+               <children>
+                  <Label styleClass="page-title" text="Leftover bread &amp; crumb reuse" />
+                  <Label styleClass="page-subtitle" text="Reduce bakery waste by converting unsold leftover bread pieces into packaged bread crumbs." />
+               </children>
+            </VBox>
+
+            <!-- Dual Action Forms: 1. Record Leftovers | 2. Produce Bread Crumbs -->
+            <HBox spacing="16.0">
+               <children>
+                  <!-- Form 1: Record Leftovers -->
+                  <VBox prefWidth="440.0" spacing="10.0" styleClass="card" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label styleClass="section-header" text="1. Log Unsold Leftover Bread" />
+                        <VBox spacing="4.0">
+                           <children>
+                              <Label styleClass="field-label" text="Source Production Batch *" />
+                              <ComboBox fx:id="cmbSourceBatch" maxWidth="1.7976931348623157E308" promptText="Select production batch" />
+                           </children>
+                        </VBox>
+                        <HBox spacing="10.0">
+                           <children>
+                              <VBox spacing="4.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label styleClass="field-label" text="Recorded Date *" />
+                                    <DatePicker fx:id="dtLeftoverDate" maxWidth="1.7976931348623157E308" />
+                                 </children>
+                              </VBox>
+                              <VBox spacing="4.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label styleClass="field-label" text="Quantity (Pieces) *" />
+                                    <TextField fx:id="txtLeftoverPieces" promptText="e.g. 25" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <VBox spacing="4.0">
+                           <children>
+                              <Label styleClass="field-label" text="Responsible Staff *" />
+                              <ComboBox fx:id="cmbLeftoverStaff" maxWidth="1.7976931348623157E308" />
+                           </children>
+                        </VBox>
+                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleSaveLeftover" styleClass="btn-primary" text="Log Leftover Batch" />
+                     </children>
+                  </VBox>
+
+                  <!-- Form 2: Produce Bread Crumbs -->
+                  <VBox prefWidth="440.0" spacing="10.0" styleClass="card" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Label styleClass="section-header" text="2. Produce Bread Crumb Batch" />
+                        <VBox spacing="4.0">
+                           <children>
+                              <Label styleClass="field-label" text="Select Leftover Lot (Inputs) *" />
+                              <ComboBox fx:id="cmbLeftoverLot" maxWidth="1.7976931348623157E308" promptText="Choose available leftover lot" />
+                           </children>
+                        </VBox>
+                        <HBox spacing="10.0">
+                           <children>
+                              <VBox spacing="4.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label styleClass="field-label" text="Pieces to Consume *" />
+                                    <TextField fx:id="txtPiecesToConsume" promptText="e.g. 20" />
+                                 </children>
+                              </VBox>
+                              <VBox spacing="4.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label styleClass="field-label" text="Output Bread Crumbs (KG) *" />
+                                    <TextField fx:id="txtOutputKg" promptText="e.g. 9.5" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <VBox spacing="4.0">
+                           <children>
+                              <Label styleClass="field-label" text="Output Catalog Product *" />
+                              <ComboBox fx:id="cmbOutputProduct" maxWidth="1.7976931348623157E308" />
+                           </children>
+                        </VBox>
+                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleProduceCrumbs" styleClass="btn-success" text="♻️ Process &amp; Produce Crumbs" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+
+            <!-- Table Card: Leftover Balance Register -->
+            <VBox spacing="10.0" styleClass="card" VBox.vgrow="ALWAYS">
+               <children>
+                  <Label styleClass="section-header" text="Leftover Lot Balances &amp; Crumb Conversion Status" />
+                  <TableView fx:id="tblLeftoverBalances" VBox.vgrow="ALWAYS">
+                     <columns>
+                        <TableColumn fx:id="colLotId" prefWidth="70.0" text="Lot #" />
+                        <TableColumn fx:id="colLotBatch" prefWidth="90.0" text="Batch #" />
+                        <TableColumn fx:id="colLotDate" prefWidth="120.0" text="Recorded Date" />
+                        <TableColumn fx:id="colLotInitial" prefWidth="120.0" text="Initial Pieces" />
+                        <TableColumn fx:id="colLotUsed" prefWidth="120.0" text="Used for Crumbs" />
+                        <TableColumn fx:id="colLotRemaining" prefWidth="140.0" text="Remaining Pieces" />
+                     </columns>
+                  </TableView>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

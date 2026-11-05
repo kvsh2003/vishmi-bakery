@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="680.0" prefWidth="950.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.vishmibakehouse.controller.ProductsController">
+   <children>
+      <VBox spacing="16.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="20.0">
+         <children>
+            <VBox spacing="2.0">
+               <children>
+                  <Label styleClass="page-title" text="Products" />
+                  <Label styleClass="page-subtitle" text="Bakery product master, pricing, units, and catalog availability." />
+               </children>
+            </VBox>
+
+            <!-- Product Form Card -->
+            <VBox spacing="12.0" styleClass="card">
+               <children>
+                  <GridPane hgap="16.0" vgap="12.0">
+                     <children>
+                        <VBox spacing="4.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                           <children>
+                              <Label styleClass="field-label" text="Product Name *" />
+                              <TextField fx:id="txtName" promptText="e.g. White Bread 450g" />
+                           </children>
+                        </VBox>
+                        <VBox spacing="4.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                           <children>
+                              <Label styleClass="field-label" text="Category *" />
+                              <TextField fx:id="txtCategory" promptText="e.g. Bread, Buns, Cakes" />
+                           </children>
+                        </VBox>
+                        <VBox spacing="4.0" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                           <children>
+                              <Label styleClass="field-label" text="Unit *" />
+                              <ComboBox fx:id="cmbUnit" maxWidth="1.7976931348623157E308" />
+                           </children>
+                        </VBox>
+                        <VBox spacing="4.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                           <children>
+                              <Label styleClass="field-label" text="Selling Price (LKR) *" />
+                              <TextField fx:id="txtPrice" promptText="0.00" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER_LEFT" spacing="4.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <children>
+                              <Label styleClass="field-label" text="Catalog Status" />
+                              <CheckBox fx:id="chkActive" mnemonicParsing="false" selected="true" text="Active for sales &amp; production">
+                                 <VBox.margin>
+                                    <Insets top="6.0" />
+                                 </VBox.margin>
+                              </CheckBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </GridPane>
+
+                  <!-- Buttons -->
+                  <HBox spacing="10.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#handleSave" styleClass="btn-primary" text="Save Product" />
+                        <Button mnemonicParsing="false" onAction="#handleUpdate" styleClass="btn-secondary" text="Update" />
+                        <Button mnemonicParsing="false" onAction="#handleDelete" styleClass="btn-danger" text="Deactivate" />
+                        <Button mnemonicParsing="false" onAction="#handleClear" styleClass="btn-secondary" text="Clear Form" />
+                     </children>
+                     <VBox.margin>
+                        <Insets top="6.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+
+            <!-- Table Card -->
+            <VBox spacing="10.0" styleClass="card" VBox.vgrow="ALWAYS">
+               <children>
+                  <HBox alignment="CENTER_LEFT">
+                     <children>
+                        <Label styleClass="section-header" text="Product Catalog Records" />
+                        <HBox alignment="CENTER_RIGHT" spacing="8.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <TextField fx:id="txtSearch" prefWidth="250.0" promptText="🔍 Search product name..." />
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  <TableView fx:id="tblProducts" VBox.vgrow="ALWAYS">
+                     <columns>
+                        <TableColumn fx:id="colId" prefWidth="70.0" text="ID" />
+                        <TableColumn fx:id="colName" prefWidth="220.0" text="Product Name" />
+                        <TableColumn fx:id="colCategory" prefWidth="130.0" text="Category" />
+                        <TableColumn fx:id="colUnit" prefWidth="80.0" text="Unit" />
+                        <TableColumn fx:id="colPrice" prefWidth="120.0" text="Price (LKR)" />
+                        <TableColumn fx:id="colActive" prefWidth="90.0" text="Active" />
+                     </columns>
+                  </TableView>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

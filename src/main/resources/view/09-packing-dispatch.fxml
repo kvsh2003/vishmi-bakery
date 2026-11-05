@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="680.0" prefWidth="950.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.vishmibakehouse.controller.PackingDispatchController">
+   <children>
+      <VBox spacing="16.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="20.0">
+         <children>
+            <VBox spacing="2.0">
+               <children>
+                  <Label styleClass="page-title" text="Packing &amp; dispatch" />
+                  <Label styleClass="page-subtitle" text="Prepare shop delivery orders, allocate bakery bread items, and assign three-wheeler vehicles." />
+               </children>
+            </VBox>
+
+            <!-- Packing Header Form -->
+            <VBox spacing="12.0" styleClass="card">
+               <children>
+                  <Label styleClass="section-header" text="Delivery Header Information" />
+                  <GridPane hgap="16.0" vgap="12.0">
+                     <children>
+                        <VBox spacing="4.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                           <children>
+                              <Label styleClass="field-label" text="Destination Shop *" />
+                              <ComboBox fx:id="cmbShop" maxWidth="1.7976931348623157E308" promptText="Select wholesale shop" />
+                           </children>
+                        </VBox>
+                        <VBox spacing="4.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                           <children>
+                              <Label styleClass="field-label" text="Delivery Date *" />
+                              <DatePicker fx:id="dtDeliveryDate" maxWidth="1.7976931348623157E308" />
+                           </children>
+                        </VBox>
+                        <VBox spacing="4.0" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                           <children>
+                              <Label styleClass="field-label" text="Packed By Staff *" />
+                              <ComboBox fx:id="cmbPackedBy" maxWidth="1.7976931348623157E308" />
+                           </children>
+                        </VBox>
+                        <VBox spacing="4.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                           <children>
+                              <Label styleClass="field-label" text="Assign Three-Wheeler" />
+                              <ComboBox fx:id="cmbVehicle" maxWidth="1.7976931348623157E308" promptText="Optional at packing" />
+                           </children>
+                        </VBox>
+                        <VBox spacing="4.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <children>
+                              <Label styleClass="field-label" text="Assign Delivery Staff" />
+                              <ComboBox fx:id="cmbDeliveryStaff" maxWidth="1.7976931348623157E308" promptText="Optional at packing" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </GridPane>
+               </children>
+            </VBox>
+
+            <!-- Item Addition & Table Card -->
+            <VBox spacing="10.0" styleClass="card" VBox.vgrow="ALWAYS">
+               <children>
+                  <Label styleClass="section-header" text="Pack Bread &amp; Bakery Products" />
+                  <HBox alignment="CENTER_LEFT" spacing="12.0">
+                     <children>
+                        <ComboBox fx:id="cmbProduct" prefWidth="250.0" promptText="Select product to pack" />
+                        <TextField fx:id="txtPackedQty" prefWidth="140.0" promptText="Packed Quantity" />
+                        <Button mnemonicParsing="false" onAction="#handleAddItem" styleClass="btn-primary" text="➕ Add to Packing List" />
+                        <Button mnemonicParsing="false" onAction="#handleRemoveItem" styleClass="btn-danger" text="🗑️ Remove" />
+                     </children>
+                  </HBox>
+                  <TableView fx:id="tblPackingItems" VBox.vgrow="ALWAYS">
+                     <columns>
+                        <TableColumn fx:id="colItemProduct" prefWidth="300.0" text="Product" />
+                        <TableColumn fx:id="colItemQty" prefWidth="150.0" text="Packed Quantity" />
+                     </columns>
+                  </TableView>
+                  <HBox alignment="CENTER_LEFT" spacing="12.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#handleSavePacked" prefHeight="38.0" styleClass="btn-primary" text="📦 Save Packed Delivery" />
+                        <Button mnemonicParsing="false" onAction="#handleDispatchNow" prefHeight="38.0" styleClass="btn-success" text="🚀 Dispatch Delivery" />
+                        <Button mnemonicParsing="false" onAction="#handleClearForm" prefHeight="38.0" styleClass="btn-secondary" text="Clear Form" />
+                     </children>
+                     <VBox.margin>
+                        <Insets top="6.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

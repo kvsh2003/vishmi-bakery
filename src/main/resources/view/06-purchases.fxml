@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="680.0" prefWidth="950.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.vishmibakehouse.controller.PurchasesController">
+   <children>
+      <VBox spacing="16.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="20.0">
+         <children>
+            <VBox spacing="2.0">
+               <children>
+                  <Label styleClass="page-title" text="Ingredient purchases" />
+                  <Label styleClass="page-subtitle" text="Record incoming raw material lots and supplier invoices to replenish bakery inventory." />
+               </children>
+            </VBox>
+
+            <!-- Form Card -->
+            <VBox spacing="12.0" styleClass="card">
+               <children>
+                  <GridPane hgap="16.0" vgap="12.0">
+                     <children>
+                        <VBox spacing="4.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                           <children>
+                              <Label styleClass="field-label" text="Ingredient *" />
+                              <ComboBox fx:id="cmbIngredient" maxWidth="1.7976931348623157E308" promptText="Select ingredient" />
+                           </children>
+                        </VBox>
+                        <VBox spacing="4.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                           <children>
+                              <Label styleClass="field-label" text="Quantity *" />
+                              <TextField fx:id="txtQty" promptText="e.g. 50.0" />
+                           </children>
+                        </VBox>
+                        <VBox spacing="4.0" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                           <children>
+                              <Label styleClass="field-label" text="Unit Cost (LKR) *" />
+                              <TextField fx:id="txtUnitCost" promptText="e.g. 160.00" />
+                           </children>
+                        </VBox>
+                        <VBox spacing="4.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                           <children>
+                              <Label styleClass="field-label" text="Supplier Name" />
+                              <TextField fx:id="txtSupplier" promptText="e.g. Serendib Flour Mills" />
+                           </children>
+                        </VBox>
+                        <VBox spacing="4.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <children>
+                              <Label styleClass="field-label" text="Received / Recorded By *" />
+                              <ComboBox fx:id="cmbEmployee" maxWidth="1.7976931348623157E308" />
+                           </children>
+                        </VBox>
+                        <VBox spacing="4.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                           <children>
+                              <Label styleClass="field-label" text="Total Calculated Cost (LKR)" />
+                              <Label fx:id="lblTotalCost" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #1E4D37;" text="LKR 0.00">
+                                 <VBox.margin>
+                                    <Insets top="6.0" />
+                                 </VBox.margin>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </GridPane>
+
+                  <!-- Buttons -->
+                  <HBox spacing="10.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#handleSave" styleClass="btn-primary" text="Record Purchase" />
+                        <Button mnemonicParsing="false" onAction="#handleClear" styleClass="btn-secondary" text="Clear Form" />
+                     </children>
+                     <VBox.margin>
+                        <Insets top="6.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+
+            <!-- Table Card -->
+            <VBox spacing="10.0" styleClass="card" VBox.vgrow="ALWAYS">
+               <children>
+                  <Label styleClass="section-header" text="Recent Purchase Invoices" />
+                  <TableView fx:id="tblPurchases" VBox.vgrow="ALWAYS">
+                     <columns>
+                        <TableColumn fx:id="colId" prefWidth="60.0" text="ID" />
+                        <TableColumn fx:id="colIngredient" prefWidth="180.0" text="Ingredient" />
+                        <TableColumn fx:id="colDate" prefWidth="140.0" text="Purchased Date" />
+                        <TableColumn fx:id="colQty" prefWidth="90.0" text="Quantity" />
+                        <TableColumn fx:id="colUnitCost" prefWidth="110.0" text="Unit Cost (LKR)" />
+                        <TableColumn fx:id="colTotalCost" prefWidth="120.0" text="Total Cost (LKR)" />
+                        <TableColumn fx:id="colSupplier" prefWidth="160.0" text="Supplier" />
+                        <TableColumn fx:id="colStaff" prefWidth="130.0" text="Recorded By" />
+                     </columns>
+                  </TableView>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

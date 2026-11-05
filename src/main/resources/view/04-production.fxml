@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="680.0" prefWidth="950.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.vishmibakehouse.controller.ProductionController">
+   <children>
+      <VBox spacing="16.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="20.0">
+         <children>
+            <VBox spacing="2.0">
+               <children>
+                  <Label styleClass="page-title" text="Daily production" />
+                  <Label styleClass="page-subtitle" text="Plan batches, track baking progress, and record actual finished quantities." />
+               </children>
+            </VBox>
+
+            <!-- Production Batch Form Card -->
+            <VBox spacing="12.0" styleClass="card">
+               <children>
+                  <GridPane hgap="16.0" vgap="12.0">
+                     <children>
+                        <VBox spacing="4.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                           <children>
+                              <Label styleClass="field-label" text="Production Date *" />
+                              <DatePicker fx:id="dtProducedOn" maxWidth="1.7976931348623157E308" />
+                           </children>
+                        </VBox>
+                        <VBox spacing="4.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                           <children>
+                              <Label styleClass="field-label" text="Product *" />
+                              <ComboBox fx:id="cmbProduct" maxWidth="1.7976931348623157E308" promptText="Select bakery product" />
+                           </children>
+                        </VBox>
+                        <VBox spacing="4.0" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                           <children>
+                              <Label styleClass="field-label" text="Responsible Staff *" />
+                              <ComboBox fx:id="cmbEmployee" maxWidth="1.7976931348623157E308" promptText="Select production staff" />
+                           </children>
+                        </VBox>
+                        <VBox spacing="4.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                           <children>
+                              <Label styleClass="field-label" text="Planned Quantity *" />
+                              <TextField fx:id="txtPlannedQty" promptText="e.g. 300" />
+                           </children>
+                        </VBox>
+                        <VBox spacing="4.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <children>
+                              <Label styleClass="field-label" text="Actual Finished Quantity" />
+                              <TextField fx:id="txtActualQty" promptText="e.g. 295" />
+                           </children>
+                        </VBox>
+                        <VBox spacing="4.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                           <children>
+                              <Label styleClass="field-label" text="Batch Status *" />
+                              <ComboBox fx:id="cmbStatus" maxWidth="1.7976931348623157E308" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </GridPane>
+
+                  <!-- Buttons -->
+                  <HBox spacing="10.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#handleSave" styleClass="btn-primary" text="Record Batch" />
+                        <Button mnemonicParsing="false" onAction="#handleUpdate" styleClass="btn-secondary" text="Update Batch" />
+                        <Button mnemonicParsing="false" onAction="#handleComplete" styleClass="btn-success" text="Mark as Completed" />
+                        <Button mnemonicParsing="false" onAction="#handleClear" styleClass="btn-secondary" text="Clear Form" />
+                     </children>
+                     <VBox.margin>
+                        <Insets top="6.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+
+            <!-- Table Card -->
+            <VBox spacing="10.0" styleClass="card" VBox.vgrow="ALWAYS">
+               <children>
+                  <Label styleClass="section-header" text="Production Batch Register" />
+                  <TableView fx:id="tblBatches" VBox.vgrow="ALWAYS">
+                     <columns>
+                        <TableColumn fx:id="colBatchId" prefWidth="70.0" text="Batch ID" />
+                        <TableColumn fx:id="colDate" prefWidth="110.0" text="Date" />
+                        <TableColumn fx:id="colProduct" prefWidth="200.0" text="Product" />
+                        <TableColumn fx:id="colEmployee" prefWidth="150.0" text="Responsible Staff" />
+                        <TableColumn fx:id="colPlanned" prefWidth="100.0" text="Planned" />
+                        <TableColumn fx:id="colActual" prefWidth="100.0" text="Actual" />
+                        <TableColumn fx:id="colStatus" prefWidth="110.0" text="Status" />
+                     </columns>
+                  </TableView>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

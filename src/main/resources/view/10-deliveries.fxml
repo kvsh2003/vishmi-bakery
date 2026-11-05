@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="680.0" prefWidth="950.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.vishmibakehouse.controller.DeliveriesController">
+   <children>
+      <VBox spacing="16.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="20.0">
+         <children>
+            <HBox alignment="CENTER_LEFT">
+               <children>
+                  <VBox spacing="2.0">
+                     <children>
+                        <Label styleClass="page-title" text="Delivery management" />
+                        <Label styleClass="page-subtitle" text="Monitor three-wheeler routes, dispatch dispatches, and record delivered quantities." />
+                     </children>
+                  </VBox>
+                  <HBox alignment="CENTER_RIGHT" spacing="10.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#handleManageShops" styleClass="btn-secondary" text="🏪 Manage Shops" />
+                        <Button mnemonicParsing="false" onAction="#handleManageVehicles" styleClass="btn-secondary" text="🛺 Manage Vehicles" />
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+
+            <!-- Delivery Update & Action Controls Card -->
+            <VBox spacing="12.0" styleClass="card">
+               <children>
+                  <Label styleClass="section-header" text="Delivery Status &amp; Vehicle Allocation" />
+                  <HBox alignment="CENTER_LEFT" spacing="14.0">
+                     <children>
+                        <VBox spacing="4.0">
+                           <children>
+                              <Label styleClass="field-label" text="Assign Vehicle" />
+                              <ComboBox fx:id="cmbVehicle" prefWidth="180.0" promptText="Select vehicle" />
+                           </children>
+                        </VBox>
+                        <VBox spacing="4.0">
+                           <children>
+                              <Label styleClass="field-label" text="Assign Delivery Staff" />
+                              <ComboBox fx:id="cmbDriver" prefWidth="180.0" promptText="Select driver" />
+                           </children>
+                        </VBox>
+                        <VBox spacing="4.0">
+                           <children>
+                              <Label styleClass="field-label" text="Update Status" />
+                              <ComboBox fx:id="cmbStatus" prefWidth="150.0" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="BOTTOM_LEFT">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#handleUpdateStatus" prefHeight="36.0" styleClass="btn-primary" text="Update Delivery" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="BOTTOM_LEFT">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#handleMarkDelivered" prefHeight="36.0" styleClass="btn-success" text="✅ Confirm Delivery Complete" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+
+            <!-- Deliveries Table Card -->
+            <VBox spacing="10.0" styleClass="card" VBox.vgrow="ALWAYS">
+               <children>
+                  <HBox alignment="CENTER_LEFT" spacing="12.0">
+                     <children>
+                        <Label styleClass="section-header" text="Scheduled Shop Deliveries" />
+                        <HBox alignment="CENTER_RIGHT" spacing="10.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#handleRefreshDeliveries" styleClass="btn-secondary" text="🔄 Refresh" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </HBox>
+                  <TableView fx:id="tblDeliveries" VBox.vgrow="ALWAYS">
+                     <columns>
+                        <TableColumn fx:id="colId" prefWidth="60.0" text="ID" />
+                        <TableColumn fx:id="colShop" prefWidth="180.0" text="Shop Name" />
+                        <TableColumn fx:id="colVehicle" prefWidth="130.0" text="Three-Wheeler" />
+                        <TableColumn fx:id="colDriver" prefWidth="150.0" text="Delivery Staff" />
+                        <TableColumn fx:id="colDate" prefWidth="100.0" text="Date" />
+                        <TableColumn fx:id="colPacked" prefWidth="100.0" text="Packed Qty" />
+                        <TableColumn fx:id="colDelivered" prefWidth="100.0" text="Delivered Qty" />
+                        <TableColumn fx:id="colStatus" prefWidth="110.0" text="Status" />
+                     </columns>
+                  </TableView>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

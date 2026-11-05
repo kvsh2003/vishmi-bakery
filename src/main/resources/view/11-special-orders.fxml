@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="680.0" prefWidth="950.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.vishmibakehouse.controller.SpecialOrdersController">
+   <children>
+      <VBox spacing="16.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="24.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="20.0">
+         <children>
+            <VBox spacing="2.0">
+               <children>
+                  <Label styleClass="page-title" text="Special customer orders" />
+                  <Label styleClass="page-subtitle" text="Register wedding cakes, tiered celebration cakes, custom designs, and advance deposits." />
+               </children>
+            </VBox>
+
+            <!-- Order Header & Customer Card -->
+            <VBox spacing="12.0" styleClass="card">
+               <children>
+                  <GridPane hgap="14.0" vgap="10.0">
+                     <children>
+                        <VBox spacing="4.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                           <children>
+                              <Label styleClass="field-label" text="Customer Name *" />
+                              <TextField fx:id="txtCustomerName" promptText="Customer full name" />
+                           </children>
+                        </VBox>
+                        <VBox spacing="4.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                           <children>
+                              <Label styleClass="field-label" text="Contact Phone *" />
+                              <TextField fx:id="txtCustomerPhone" promptText="077xxxxxxx" />
+                           </children>
+                        </VBox>
+                        <VBox spacing="4.0" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                           <children>
+                              <Label styleClass="field-label" text="Customer Address" />
+                              <TextField fx:id="txtCustomerAddress" promptText="Delivery / residence address" />
+                           </children>
+                        </VBox>
+                        <VBox spacing="4.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                           <children>
+                              <Label styleClass="field-label" text="Order Type *" />
+                              <ComboBox fx:id="cmbOrderType" maxWidth="1.7976931348623157E308" />
+                           </children>
+                        </VBox>
+                        <VBox spacing="4.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <children>
+                              <Label styleClass="field-label" text="Required Date *" />
+                              <DatePicker fx:id="dtRequiredDate" maxWidth="1.7976931348623157E308" />
+                           </children>
+                        </VBox>
+                        <VBox spacing="4.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                           <children>
+                              <Label styleClass="field-label" text="Advance Deposit (LKR) *" />
+                              <TextField fx:id="txtDeposit" promptText="0.00" />
+                           </children>
+                        </VBox>
+                        <VBox spacing="4.0" GridPane.columnIndex="0" GridPane.columnSpan="3" GridPane.rowIndex="2">
+                           <children>
+                              <Label styleClass="field-label" text="Special Instructions / Cake Theme Design Notes" />
+                              <TextField fx:id="txtInstructions" promptText="e.g. 3-tier white and gold floral wedding cake with ribbon trim" />
+                           </children>
+                        </VBox>
+                     </children>
+                  </GridPane>
+               </children>
+            </VBox>
+
+            <!-- Itemized Cake Specification & Orders Table -->
+            <HBox spacing="16.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <!-- Left side: Items & Submit -->
+                  <VBox prefWidth="380.0" spacing="10.0" styleClass="card">
+                     <children>
+                        <Label styleClass="section-header" text="Cake Items &amp; Pricing" />
+                        <VBox spacing="4.0">
+                           <children>
+                              <Label styleClass="field-label" text="Item Description *" />
+                              <TextField fx:id="txtItemDesc" promptText="e.g. Tier 1 &amp; 2 Rich Fruit Cake" />
+                           </children>
+                        </VBox>
+                        <HBox spacing="10.0">
+                           <children>
+                              <VBox spacing="4.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label styleClass="field-label" text="Qty *" />
+                                    <TextField fx:id="txtItemQty" promptText="1" />
+                                 </children>
+                              </VBox>
+                              <VBox spacing="4.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <Label styleClass="field-label" text="Unit Price *" />
+                                    <TextField fx:id="txtItemPrice" promptText="0.00" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleAddItem" styleClass="btn-secondary" text="➕ Add Cake Item" />
+                        <TableView fx:id="tblOrderItems" prefHeight="130.0" VBox.vgrow="ALWAYS">
+                           <columns>
+                              <TableColumn fx:id="colItemDesc" prefWidth="180.0" text="Description" />
+                              <TableColumn fx:id="colItemQty" prefWidth="50.0" text="Qty" />
+                              <TableColumn fx:id="colItemPrice" prefWidth="100.0" text="Price" />
+                           </columns>
+                        </TableView>
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                           <children>
+                              <Label style="-fx-font-weight: bold;" text="Total: " />
+                              <Label fx:id="lblOrderTotal" style="-fx-font-weight: bold; -fx-text-fill: #1E4D37;" text="LKR 0.00" />
+                              <Pane HBox.hgrow="ALWAYS" />
+                              <Label style="-fx-font-weight: bold;" text="Balance: " />
+                              <Label fx:id="lblOrderBalance" style="-fx-font-weight: bold; -fx-text-fill: #DC2626;" text="LKR 0.00" />
+                           </children>
+                        </HBox>
+                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handlePlaceOrder" prefHeight="38.0" styleClass="btn-primary" text="🎂 Save Special Order" />
+                     </children>
+                  </VBox>
+
+                  <!-- Right side: Existing Orders Table -->
+                  <VBox spacing="10.0" styleClass="card" HBox.hgrow="ALWAYS">
+                     <children>
+                        <HBox alignment="CENTER_LEFT">
+                           <children>
+                              <Label styleClass="section-header" text="Existing Special Customer Orders" />
+                              <HBox alignment="CENTER_RIGHT" spacing="8.0" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <ComboBox fx:id="cmbStatusFilter" prefWidth="130.0" promptText="Filter status" />
+                                    <Button mnemonicParsing="false" onAction="#handleUpdateStatus" styleClass="btn-secondary" text="Update Status" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </HBox>
+                        <TableView fx:id="tblSpecialOrders" VBox.vgrow="ALWAYS">
+                           <columns>
+                              <TableColumn fx:id="colOrderId" prefWidth="60.0" text="ID" />
+                              <TableColumn fx:id="colOrderCustomer" prefWidth="140.0" text="Customer" />
+                              <TableColumn fx:id="colOrderType" prefWidth="110.0" text="Type" />
+                              <TableColumn fx:id="colOrderDate" prefWidth="100.0" text="Required Date" />
+                              <TableColumn fx:id="colOrderTotal" prefWidth="90.0" text="Total" />
+                              <TableColumn fx:id="colOrderDeposit" prefWidth="80.0" text="Deposit" />
+                              <TableColumn fx:id="colOrderBalance" prefWidth="80.0" text="Balance" />
+                              <TableColumn fx:id="colOrderStatus" prefWidth="95.0" text="Status" />
+                           </columns>
+                        </TableView>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
