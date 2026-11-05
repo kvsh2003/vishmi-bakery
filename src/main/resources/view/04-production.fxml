@@ -88,6 +88,9 @@
                <children>
                   <Label styleClass="section-header" text="Production Batch Register" />
                   <TableView fx:id="tblBatches" VBox.vgrow="ALWAYS">
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
                      <columns>
                         <TableColumn fx:id="colBatchId" prefWidth="70.0" text="Batch ID" />
                         <TableColumn fx:id="colDate" prefWidth="110.0" text="Date" />
@@ -104,3 +107,4 @@
       </VBox>
    </children>
 </AnchorPane>
+

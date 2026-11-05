@@ -89,6 +89,9 @@
                <children>
                   <Label styleClass="section-header" text="Recent Purchase Invoices" />
                   <TableView fx:id="tblPurchases" VBox.vgrow="ALWAYS">
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
                      <columns>
                         <TableColumn fx:id="colId" prefWidth="60.0" text="ID" />
                         <TableColumn fx:id="colIngredient" prefWidth="180.0" text="Ingredient" />
@@ -106,3 +109,4 @@
       </VBox>
    </children>
 </AnchorPane>
+

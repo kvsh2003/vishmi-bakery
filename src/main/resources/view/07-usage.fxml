@@ -83,6 +83,9 @@
                <children>
                   <Label styleClass="section-header" text="Ingredient Consumption Log" />
                   <TableView fx:id="tblUsages" VBox.vgrow="ALWAYS">
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
                      <columns>
                         <TableColumn fx:id="colId" prefWidth="60.0" text="ID" />
                         <TableColumn fx:id="colBatch" prefWidth="90.0" text="Batch #" />
@@ -99,3 +102,4 @@
       </VBox>
    </children>
 </AnchorPane>
+

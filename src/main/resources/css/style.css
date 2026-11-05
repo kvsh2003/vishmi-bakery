@@ -1,254 +1,335 @@
-/* Vishmi Bakehouse Theme Stylesheet */
+/* ==========================================================================
+   VISHMI BAKEHOUSE MANAGEMENT SYSTEM — MODERN EMERALD DESIGN SYSTEM
+   Professional, accessible, responsive styling for JavaFX 21+
+   ========================================================================== */
 
 .root {
-    -fx-font-family: 'Segoe UI', 'Helvetica Neue', 'Arial', sans-serif;
-    -fx-background-color: #F4F6F3;
+    -fx-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    -fx-background-color: #F3F6F4;
     -fx-font-size: 13px;
-    -fx-text-fill: #28352F;
+    -fx-text-fill: #22332A;
 }
 
-/* Base Headings & Labels */
+/* ==========================================
+   1. Typography & Section Headers
+   ========================================== */
 .page-title {
-    -fx-font-size: 24px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #1E4D37;
+    -fx-font-size: 26px;
+    -fx-font-weight: 800;
+    -fx-text-fill: #143D2B;
 }
 
 .page-subtitle {
     -fx-font-size: 13px;
-    -fx-text-fill: #6B7B73;
+    -fx-text-fill: #5E7166;
 }
 
 .section-header {
     -fx-font-size: 16px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #28352F;
+    -fx-font-weight: 700;
+    -fx-text-fill: #1A3024;
 }
 
 .field-label {
     -fx-font-size: 12px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #4B5E55;
+    -fx-font-weight: 600;
+    -fx-text-fill: #3E5246;
 }
 
-/* Cards & Surfaces */
+/* ==========================================
+   2. Modern Cards & Surfaces
+   ========================================== */
 .card {
     -fx-background-color: #FFFFFF;
-    -fx-background-radius: 8px;
-    -fx-border-color: #DCE3DC;
-    -fx-border-radius: 8px;
+    -fx-background-radius: 10px;
+    -fx-border-color: #DFE5E1;
+    -fx-border-radius: 10px;
     -fx-border-width: 1px;
-    -fx-padding: 16px;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.03), 8, 0, 0, 2);
+    -fx-padding: 18px 20px;
+    -fx-effect: dropshadow(gaussian, rgba(16, 38, 27, 0.05), 12, 0.1, 0, 3);
 }
 
 .metric-card {
     -fx-background-color: #FFFFFF;
-    -fx-background-radius: 8px;
-    -fx-border-color: #DCE3DC;
-    -fx-border-radius: 8px;
+    -fx-background-radius: 10px;
+    -fx-border-color: #DFE5E1;
+    -fx-border-radius: 10px;
     -fx-border-width: 1px;
-    -fx-padding: 14px;
+    -fx-padding: 16px 18px;
+    -fx-effect: dropshadow(gaussian, rgba(16, 38, 27, 0.04), 8, 0.1, 0, 2);
 }
 
 .metric-title {
-    -fx-font-size: 12px;
-    -fx-text-fill: #6B7B73;
-    -fx-font-weight: bold;
+    -fx-font-size: 11px;
+    -fx-text-fill: #607368;
+    -fx-font-weight: 700;
+    -fx-letter-spacing: 0.5px;
 }
 
 .metric-value {
-    -fx-font-size: 22px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #1E4D37;
+    -fx-font-size: 24px;
+    -fx-font-weight: 800;
+    -fx-text-fill: #143D2B;
 }
 
-/* Sidebar Styling */
+/* ==========================================
+   3. Sidebar Navigation
+   ========================================== */
 .sidebar {
-    -fx-background-color: #1E4D37;
-    -fx-padding: 16px 12px;
+    -fx-background-color: linear-gradient(to bottom, #113423, #1A4731);
+    -fx-padding: 18px 14px;
 }
 
 .brand-title {
-    -fx-font-size: 18px;
-    -fx-font-weight: bold;
+    -fx-font-size: 20px;
+    -fx-font-weight: 900;
     -fx-text-fill: #FFFFFF;
-    -fx-letter-spacing: 1px;
+    -fx-letter-spacing: 1.5px;
 }
 
 .brand-subtitle {
-    -fx-font-size: 11px;
-    -fx-text-fill: #97BBAA;
+    -fx-font-size: 10px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #8BB8A0;
+    -fx-letter-spacing: 1px;
 }
 
 .nav-button {
     -fx-background-color: transparent;
-    -fx-text-fill: #E0EDE7;
+    -fx-text-fill: #D4E5DB;
     -fx-font-size: 13px;
+    -fx-font-weight: 500;
     -fx-alignment: BASELINE_LEFT;
-    -fx-padding: 8px 12px;
-    -fx-background-radius: 6px;
+    -fx-padding: 9px 14px;
+    -fx-background-radius: 8px;
     -fx-cursor: hand;
 }
 
 .nav-button:hover {
-    -fx-background-color: #276247;
+    -fx-background-color: rgba(255, 255, 255, 0.12);
     -fx-text-fill: #FFFFFF;
+    -fx-font-weight: 600;
 }
 
 .nav-button:pressed, .nav-button.active {
-    -fx-background-color: #133324;
+    -fx-background-color: #0C2619;
     -fx-text-fill: #FFFFFF;
-    -fx-font-weight: bold;
+    -fx-font-weight: 700;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.25), 4, 0, 0, 1);
 }
 
-/* Header & Top Bar */
+/* ==========================================
+   4. Top Bar & User Header
+   ========================================== */
 .top-bar {
     -fx-background-color: #FFFFFF;
-    -fx-border-color: #DCE3DC;
+    -fx-border-color: #DFE5E1;
     -fx-border-width: 0 0 1px 0;
-    -fx-padding: 12px 24px;
+    -fx-padding: 12px 28px;
 }
 
 .user-badge {
-    -fx-background-color: #E8F0EC;
-    -fx-text-fill: #1E4D37;
-    -fx-padding: 4px 10px;
-    -fx-background-radius: 12px;
-    -fx-font-size: 12px;
-    -fx-font-weight: bold;
+    -fx-background-color: #E6F3EC;
+    -fx-text-fill: #143D2B;
+    -fx-padding: 5px 12px;
+    -fx-background-radius: 14px;
+    -fx-font-size: 11px;
+    -fx-font-weight: 700;
+    -fx-border-color: #C6E0D2;
+    -fx-border-radius: 14px;
+    -fx-border-width: 1px;
 }
 
-/* Form Controls */
+/* ==========================================
+   5. Form Controls (Inputs, Dropdowns, DatePickers)
+   ========================================== */
 .text-field, .password-field, .combo-box, .date-picker {
     -fx-background-color: #FFFFFF;
-    -fx-background-radius: 6px;
-    -fx-border-color: #CBD5CD;
-    -fx-border-radius: 6px;
+    -fx-background-radius: 7px;
+    -fx-border-color: #CBD5CE;
+    -fx-border-radius: 7px;
     -fx-border-width: 1px;
-    -fx-padding: 7px 10px;
+    -fx-padding: 8px 12px;
     -fx-font-size: 13px;
-    -fx-text-fill: #28352F;
+    -fx-text-fill: #22332A;
 }
 
 .text-field:focused, .password-field:focused, .combo-box:focused, .date-picker:focused {
-    -fx-border-color: #276247;
-    -fx-effect: dropshadow(three-pass-box, rgba(39,98,71,0.2), 4, 0, 0, 0);
+    -fx-border-color: #1A4731;
+    -fx-effect: dropshadow(three-pass-box, rgba(26, 71, 49, 0.22), 5, 0, 0, 0);
 }
 
-/* Buttons */
+.combo-box .list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: #22332A;
+}
+
+/* ==========================================
+   6. Modern Button Hierarchy
+   ========================================== */
 .btn-primary {
-    -fx-background-color: #276247;
+    -fx-background-color: #1A4731;
     -fx-text-fill: #FFFFFF;
-    -fx-font-weight: bold;
-    -fx-background-radius: 6px;
-    -fx-padding: 8px 16px;
+    -fx-font-weight: 700;
+    -fx-background-radius: 7px;
+    -fx-padding: 9px 18px;
     -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(26, 71, 49, 0.2), 6, 0.1, 0, 2);
 }
 
 .btn-primary:hover {
-    -fx-background-color: #1F503A;
+    -fx-background-color: #143726;
+    -fx-effect: dropshadow(gaussian, rgba(26, 71, 49, 0.35), 8, 0.15, 0, 3);
 }
 
 .btn-secondary {
     -fx-background-color: #FFFFFF;
-    -fx-text-fill: #28352F;
-    -fx-border-color: #CBD5CD;
-    -fx-border-radius: 6px;
-    -fx-background-radius: 6px;
-    -fx-padding: 7px 14px;
+    -fx-text-fill: #22332A;
+    -fx-font-weight: 600;
+    -fx-border-color: #CBD5CE;
+    -fx-border-radius: 7px;
+    -fx-background-radius: 7px;
+    -fx-padding: 8px 16px;
     -fx-cursor: hand;
 }
 
 .btn-secondary:hover {
-    -fx-background-color: #F0F4F1;
+    -fx-background-color: #F1F5F2;
+    -fx-border-color: #B5C3B9;
 }
 
 .btn-danger {
-    -fx-background-color: #DC2626;
+    -fx-background-color: #E11D48;
     -fx-text-fill: #FFFFFF;
-    -fx-font-weight: bold;
-    -fx-background-radius: 6px;
-    -fx-padding: 8px 16px;
+    -fx-font-weight: 700;
+    -fx-background-radius: 7px;
+    -fx-padding: 9px 18px;
     -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(225, 29, 72, 0.2), 6, 0.1, 0, 2);
 }
 
 .btn-danger:hover {
-    -fx-background-color: #B91C1C;
+    -fx-background-color: #BE123C;
 }
 
 .btn-success {
-    -fx-background-color: #16A34A;
+    -fx-background-color: #059669;
     -fx-text-fill: #FFFFFF;
-    -fx-font-weight: bold;
-    -fx-background-radius: 6px;
-    -fx-padding: 8px 16px;
+    -fx-font-weight: 700;
+    -fx-background-radius: 7px;
+    -fx-padding: 9px 18px;
     -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(5, 150, 105, 0.2), 6, 0.1, 0, 2);
 }
 
-/* Tables */
+.btn-success:hover {
+    -fx-background-color: #047857;
+}
+
+/* ==========================================
+   7. Modern TableViews & Grids
+   ========================================== */
 .table-view {
     -fx-background-color: #FFFFFF;
-    -fx-background-radius: 6px;
-    -fx-border-color: #DCE3DC;
-    -fx-border-radius: 6px;
+    -fx-background-radius: 8px;
+    -fx-border-color: #DFE5E1;
+    -fx-border-radius: 8px;
+    -fx-border-width: 1px;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #F7FAF8;
+    -fx-border-color: #DFE5E1;
+    -fx-border-width: 0 0 1px 0;
 }
 
 .table-view .column-header {
-    -fx-background-color: #F8FAF9;
-    -fx-border-color: #E2E8E4;
-    -fx-border-width: 0 0 1px 0;
-    -fx-padding: 8px 6px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #4B5E55;
+    -fx-background-color: transparent;
+    -fx-padding: 10px 8px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #43584C;
+    -fx-font-size: 12px;
 }
 
 .table-view .table-row-cell {
     -fx-background-color: #FFFFFF;
-    -fx-border-color: #F0F4F1;
+    -fx-border-color: #F1F4F2;
     -fx-border-width: 0 0 1px 0;
+    -fx-cell-size: 38px;
 }
 
 .table-view .table-row-cell:odd {
-    -fx-background-color: #FCFDFD;
+    -fx-background-color: #FAFCFA;
 }
 
 .table-view .table-row-cell:filled:hover {
-    -fx-background-color: #EBF4F0;
+    -fx-background-color: #EDF6F1;
 }
 
 .table-view .table-row-cell:filled:selected {
-    -fx-background-color: #D6E8DF;
+    -fx-background-color: #D8EEE1;
 }
 
 .table-view .table-row-cell:filled:selected .text {
-    -fx-fill: #1E4D37;
+    -fx-fill: #143D2B;
+    -fx-font-weight: 700;
 }
 
-/* Badges */
-.badge-active {
+/* ==========================================
+   8. Status Badges & Pills
+   ========================================== */
+.badge-active, .badge-success {
     -fx-background-color: #DCFCE7;
-    -fx-text-fill: #166534;
-    -fx-padding: 2px 8px;
-    -fx-background-radius: 10px;
-    -fx-font-weight: bold;
+    -fx-text-fill: #15803D;
+    -fx-padding: 3px 10px;
+    -fx-background-radius: 12px;
+    -fx-font-weight: 700;
     -fx-font-size: 11px;
 }
 
 .badge-warning {
     -fx-background-color: #FEF3C7;
-    -fx-text-fill: #92400E;
-    -fx-padding: 2px 8px;
-    -fx-background-radius: 10px;
-    -fx-font-weight: bold;
+    -fx-text-fill: #B45309;
+    -fx-padding: 3px 10px;
+    -fx-background-radius: 12px;
+    -fx-font-weight: 700;
     -fx-font-size: 11px;
 }
 
 .badge-danger {
     -fx-background-color: #FEE2E2;
-    -fx-text-fill: #991B1B;
-    -fx-padding: 2px 8px;
-    -fx-background-radius: 10px;
-    -fx-font-weight: bold;
+    -fx-text-fill: #B91C1C;
+    -fx-padding: 3px 10px;
+    -fx-background-radius: 12px;
+    -fx-font-weight: 700;
     -fx-font-size: 11px;
+}
+
+.badge-info {
+    -fx-background-color: #E0F2FE;
+    -fx-text-fill: #0369A1;
+    -fx-padding: 3px 10px;
+    -fx-background-radius: 12px;
+    -fx-font-weight: 700;
+    -fx-font-size: 11px;
+}
+
+/* ==========================================
+   9. Modern Scrollbar Styling
+   ========================================== */
+.scroll-bar:vertical, .scroll-bar:horizontal {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:vertical .thumb, .scroll-bar:horizontal .thumb {
+    -fx-background-color: #CBD5CE;
+    -fx-background-radius: 8px;
+}
+
+.scroll-bar:vertical .thumb:hover, .scroll-bar:horizontal .thumb:hover {
+    -fx-background-color: #A0B2A6;
+}
+
+.scroll-bar .track {
+    -fx-background-color: transparent;
 }

@@ -78,6 +78,9 @@
                      </children>
                   </HBox>
                   <TableView fx:id="tblPackingItems" VBox.vgrow="ALWAYS">
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
                      <columns>
                         <TableColumn fx:id="colItemProduct" prefWidth="300.0" text="Product" />
                         <TableColumn fx:id="colItemQty" prefWidth="150.0" text="Packed Quantity" />
@@ -99,3 +102,4 @@
       </VBox>
    </children>
 </AnchorPane>
+

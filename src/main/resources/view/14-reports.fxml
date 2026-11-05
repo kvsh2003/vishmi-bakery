@@ -66,6 +66,9 @@
                <children>
                   <Label styleClass="section-header" text="Daily Financial Sales Summary (v_daily_sales)" />
                   <TableView fx:id="tblDailySales" VBox.vgrow="ALWAYS">
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
                      <columns>
                         <TableColumn fx:id="colSaleDate" prefWidth="180.0" text="Date" />
                         <TableColumn fx:id="colTransactions" prefWidth="180.0" text="Total Transactions" />
@@ -78,3 +81,4 @@
       </VBox>
    </children>
 </AnchorPane>
+

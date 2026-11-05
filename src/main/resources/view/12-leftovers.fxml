@@ -105,6 +105,9 @@
                <children>
                   <Label styleClass="section-header" text="Leftover Lot Balances &amp; Crumb Conversion Status" />
                   <TableView fx:id="tblLeftoverBalances" VBox.vgrow="ALWAYS">
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
                      <columns>
                         <TableColumn fx:id="colLotId" prefWidth="70.0" text="Lot #" />
                         <TableColumn fx:id="colLotBatch" prefWidth="90.0" text="Batch #" />
@@ -120,3 +123,4 @@
       </VBox>
    </children>
 </AnchorPane>
+

@@ -95,6 +95,9 @@
                      </children>
                   </HBox>
                   <TableView fx:id="tblProducts" VBox.vgrow="ALWAYS">
+                     <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                     </columnResizePolicy>
                      <columns>
                         <TableColumn fx:id="colId" prefWidth="70.0" text="ID" />
                         <TableColumn fx:id="colName" prefWidth="220.0" text="Product Name" />
@@ -110,3 +113,4 @@
       </VBox>
    </children>
 </AnchorPane>
+

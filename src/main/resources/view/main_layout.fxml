@@ -83,3 +83,4 @@
       <StackPane fx:id="centerContentPane" style="-fx-background-color: #F4F6F3;" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>
+
