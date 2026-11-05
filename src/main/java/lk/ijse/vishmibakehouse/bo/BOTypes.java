@@ -1,0 +1,5 @@
+package lk.ijse.vishmibakehouse.bo;
+
+public enum BOTypes {
+    AUTH, EMPLOYEE, PRODUCT, INGREDIENT, PRODUCTION, SALE, DELIVERY, SPECIAL_ORDER, LEFTOVER, DASHBOARD
+}
