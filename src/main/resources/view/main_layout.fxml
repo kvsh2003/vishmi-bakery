@@ -9,13 +9,14 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.SVGPath?>
 
 <StackPane fx:id="mainRootPane" prefHeight="750.0" prefWidth="1200.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.vishmibakehouse.controller.MainLayoutController">
    <children>
       <BorderPane prefHeight="750.0" prefWidth="1200.0">
          <!-- Left Sidebar -->
          <left>
-            <VBox prefWidth="230.0" spacing="4.0" styleClass="sidebar" BorderPane.alignment="CENTER">
+            <VBox prefWidth="240.0" spacing="4.0" styleClass="sidebar" BorderPane.alignment="CENTER">
                <children>
                   <!-- Brand -->
                   <VBox spacing="2.0">
@@ -33,19 +34,71 @@
                      <content>
                         <VBox spacing="3.0">
                            <children>
-                              <Button fx:id="btnNavDashboard" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNavDashboard" styleClass="nav-button" text="📊  Dashboard" />
-                              <Button fx:id="btnNavProducts" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNavProducts" styleClass="nav-button" text="🍞  Products" />
-                              <Button fx:id="btnNavProduction" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNavProduction" styleClass="nav-button" text="⚙️  Production" />
-                              <Button fx:id="btnNavIngredients" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNavIngredients" styleClass="nav-button" text="🌾  Ingredients" />
-                              <Button fx:id="btnNavPurchases" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNavPurchases" styleClass="nav-button" text="🛒  Purchases" />
-                              <Button fx:id="btnNavUsage" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNavUsage" styleClass="nav-button" text="🥣  Ingredient Usage" />
-                              <Button fx:id="btnNavOutletSales" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNavOutletSales" styleClass="nav-button" text="💳  Outlet Sales (POS)" />
-                              <Button fx:id="btnNavPacking" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNavPacking" styleClass="nav-button" text="📦  Packing &amp; Dispatch" />
-                              <Button fx:id="btnNavDeliveries" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNavDeliveries" styleClass="nav-button" text="🛺  Deliveries" />
-                              <Button fx:id="btnNavSpecialOrders" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNavSpecialOrders" styleClass="nav-button" text="🎂  Special Orders" />
-                              <Button fx:id="btnNavLeftovers" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNavLeftovers" styleClass="nav-button" text="♻️  Leftovers &amp; Crumbs" />
-                              <Button fx:id="btnNavEmployees" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNavEmployees" styleClass="nav-button" text="👥  Employees &amp; Users" />
-                              <Button fx:id="btnNavReports" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNavReports" styleClass="nav-button" text="📈  Reports &amp; Analytics" />
+                              <Button fx:id="btnNavDashboard" graphicTextGap="12.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNavDashboard" styleClass="nav-button" text="Dashboard">
+                                 <graphic>
+                                    <SVGPath content="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z" fill="WHITE" scaleX="0.75" scaleY="0.75" styleClass="nav-icon" />
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="btnNavProducts" graphicTextGap="12.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNavProducts" styleClass="nav-button" text="Products">
+                                 <graphic>
+                                    <SVGPath content="M21 16.5c0 .38-.21.71-.53.88l-7.9 4.44c-.16.12-.36.18-.57.18s-.41-.06-.57-.18l-7.9-4.44A.991.991 0 0 1 3 16.5v-9c0-.38.21-.71.53-.88l7.9-4.44c.16-.12.36-.18.57-.18s.41.06.57.18l7.9 4.44c.32.17.53.5.53.88v9zM12 4.15L6.04 7.5 12 10.85l5.96-3.35L12 4.15zM5 9.07v6.71l6 3.38v-6.72L5 9.07zm14 0l-6 3.37v6.72l6-3.38V9.07z" fill="WHITE" scaleX="0.75" scaleY="0.75" styleClass="nav-icon" />
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="btnNavProduction" graphicTextGap="12.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNavProduction" styleClass="nav-button" text="Production">
+                                 <graphic>
+                                    <SVGPath content="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.488.488 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z" fill="WHITE" scaleX="0.75" scaleY="0.75" styleClass="nav-icon" />
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="btnNavIngredients" graphicTextGap="12.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNavIngredients" styleClass="nav-button" text="Ingredients">
+                                 <graphic>
+                                    <SVGPath content="M17 8C8 10 5.9 16.17 3.82 21.34l1.89.66.95-2.3c.48.17.98.3 1.34.3C19 20 22 3 22 3c-1 2-8 2.25-13 3.25S2 11.5 2 13.5c0 2 1 3.5 3 4.5l1.5-3.5c1.5 1 3.5 1 4.5 0s2-3.5 6-6.5z" fill="WHITE" scaleX="0.75" scaleY="0.75" styleClass="nav-icon" />
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="btnNavPurchases" graphicTextGap="12.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNavPurchases" styleClass="nav-button" text="Purchases">
+                                 <graphic>
+                                    <SVGPath content="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1 1 0 0 0 20 4H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z" fill="WHITE" scaleX="0.75" scaleY="0.75" styleClass="nav-icon" />
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="btnNavUsage" graphicTextGap="12.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNavUsage" styleClass="nav-button" text="Ingredient Usage">
+                                 <graphic>
+                                    <SVGPath content="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10H7v-2h10v2zm0-4H7V7h10v2z" fill="WHITE" scaleX="0.75" scaleY="0.75" styleClass="nav-icon" />
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="btnNavOutletSales" graphicTextGap="12.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNavOutletSales" styleClass="nav-button" text="Outlet Sales (POS)">
+                                 <graphic>
+                                    <SVGPath content="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z" fill="WHITE" scaleX="0.75" scaleY="0.75" styleClass="nav-icon" />
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="btnNavPacking" graphicTextGap="12.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNavPacking" styleClass="nav-button" text="Packing &amp; Dispatch">
+                                 <graphic>
+                                    <SVGPath content="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm0 16H5V7h14v12zm-2-7h-4v-4h-2v4H7v2h4v4h2v-4h4v-2z" fill="WHITE" scaleX="0.75" scaleY="0.75" styleClass="nav-icon" />
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="btnNavDeliveries" graphicTextGap="12.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNavDeliveries" styleClass="nav-button" text="Deliveries">
+                                 <graphic>
+                                    <SVGPath content="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zm-.5 1.5l1.96 2.5H17V9.5h2.5zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.5-3H18v-2h2.5v2zm-2 3c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z" fill="WHITE" scaleX="0.75" scaleY="0.75" styleClass="nav-icon" />
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="btnNavSpecialOrders" graphicTextGap="12.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNavSpecialOrders" styleClass="nav-button" text="Special Orders">
+                                 <graphic>
+                                    <SVGPath content="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" fill="WHITE" scaleX="0.75" scaleY="0.75" styleClass="nav-icon" />
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="btnNavLeftovers" graphicTextGap="12.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNavLeftovers" styleClass="nav-button" text="Leftovers &amp; Crumbs">
+                                 <graphic>
+                                    <SVGPath content="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46A7.93 7.93 0 0 0 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74A7.93 7.93 0 0 0 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z" fill="WHITE" scaleX="0.75" scaleY="0.75" styleClass="nav-icon" />
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="btnNavEmployees" graphicTextGap="12.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNavEmployees" styleClass="nav-button" text="Employees &amp; Users">
+                                 <graphic>
+                                    <SVGPath content="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" fill="WHITE" scaleX="0.75" scaleY="0.75" styleClass="nav-icon" />
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="btnNavReports" graphicTextGap="12.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleNavReports" styleClass="nav-button" text="Reports &amp; Analytics">
+                                 <graphic>
+                                    <SVGPath content="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" fill="WHITE" scaleX="0.75" scaleY="0.75" styleClass="nav-icon" />
+                                 </graphic>
+                              </Button>
                            </children>
                         </VBox>
                      </content>
@@ -54,7 +107,11 @@
                   <!-- Logout button at bottom -->
                   <VBox>
                      <children>
-                        <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleLogout" style="-fx-background-color: #2F694F; -fx-text-fill: white; -fx-background-radius: 6px; -fx-padding: 8px;" text="🚪  Log Out" />
+                        <Button graphicTextGap="12.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleLogout" styleClass="btn-logout" text="Log Out">
+                           <graphic>
+                              <SVGPath content="M10.09 15.59L11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5c-1.11 0-2 .9-2 2v4h2V5h14v14H5v-4H3v4c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z" fill="WHITE" scaleX="0.75" scaleY="0.75" styleClass="nav-icon" />
+                           </graphic>
+                        </Button>
                      </children>
                      <VBox.margin>
                         <Insets top="10.0" />

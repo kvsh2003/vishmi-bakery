@@ -105,17 +105,48 @@
     -fx-cursor: hand;
 }
 
+.nav-icon {
+    -fx-fill: #CDE2D6;
+}
+
 .nav-button:hover {
-    -fx-background-color: rgba(255, 255, 255, 0.12);
+    -fx-background-color: #266043;
     -fx-text-fill: #FFFFFF;
     -fx-font-weight: 600;
 }
 
-.nav-button:pressed, .nav-button.active {
-    -fx-background-color: #0C2619;
+.nav-button:hover .nav-icon {
+    -fx-fill: #FFFFFF;
+}
+
+.nav-button.active {
+    -fx-background-color: #266043;
     -fx-text-fill: #FFFFFF;
     -fx-font-weight: 700;
+    -fx-border-color: #52B788;
+    -fx-border-width: 0 0 0 4px;
+    -fx-border-radius: 2px 8px 8px 2px;
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.25), 4, 0, 0, 1);
+}
+
+.nav-button.active .nav-icon {
+    -fx-fill: #FFFFFF;
+}
+
+.btn-logout {
+    -fx-background-color: #21543B;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+    -fx-alignment: BASELINE_LEFT;
+    -fx-padding: 9px 14px;
+    -fx-background-radius: 8px;
+    -fx-cursor: hand;
+}
+
+.btn-logout:hover {
+    -fx-background-color: #B91C1C;
+    -fx-text-fill: #FFFFFF;
 }
 
 /* ==========================================

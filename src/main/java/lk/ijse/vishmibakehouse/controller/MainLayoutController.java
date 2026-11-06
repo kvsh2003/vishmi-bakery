@@ -95,8 +95,26 @@ public class MainLayoutController {
         btnNavReports.setDisable(!SecurityContext.canAccess("reports"));
     }
 
-    private void loadView(String fxmlPath, String headerTitle) {
+    private void setActiveButton(Button activeButton) {
+        Button[] buttons = {
+            btnNavDashboard, btnNavProducts, btnNavProduction, btnNavIngredients,
+            btnNavPurchases, btnNavUsage, btnNavOutletSales, btnNavPacking,
+            btnNavDeliveries, btnNavSpecialOrders, btnNavLeftovers, btnNavEmployees,
+            btnNavReports
+        };
+        for (Button b : buttons) {
+            if (b != null) {
+                b.getStyleClass().remove("active");
+            }
+        }
+        if (activeButton != null && !activeButton.getStyleClass().contains("active")) {
+            activeButton.getStyleClass().add("active");
+        }
+    }
+
+    private void loadView(String fxmlPath, String headerTitle, Button activeButton) {
         try {
+            setActiveButton(activeButton);
             lblPageHeader.setText(headerTitle);
             NavigationUtil.navigateTo(fxmlPath);
         } catch (IOException e) {
@@ -107,67 +125,67 @@ public class MainLayoutController {
 
     @FXML
     public void handleNavDashboard(ActionEvent event) {
-        loadView("/view/02-dashboard.fxml", "Daily Operations Overview");
+        loadView("/view/02-dashboard.fxml", "Daily Operations Overview", btnNavDashboard);
     }
 
     @FXML
     public void handleNavProducts(ActionEvent event) {
-        loadView("/view/03-products.fxml", "Bakery Products Catalog");
+        loadView("/view/03-products.fxml", "Bakery Products Catalog", btnNavProducts);
     }
 
     @FXML
     public void handleNavProduction(ActionEvent event) {
-        loadView("/view/04-production.fxml", "Daily Production Management");
+        loadView("/view/04-production.fxml", "Daily Production Management", btnNavProduction);
     }
 
     @FXML
     public void handleNavIngredients(ActionEvent event) {
-        loadView("/view/05-ingredients.fxml", "Ingredient Inventory & Reorder Levels");
+        loadView("/view/05-ingredients.fxml", "Ingredient Inventory & Reorder Levels", btnNavIngredients);
     }
 
     @FXML
     public void handleNavPurchases(ActionEvent event) {
-        loadView("/view/06-purchases.fxml", "Ingredient Purchases & Goods Received");
+        loadView("/view/06-purchases.fxml", "Ingredient Purchases & Goods Received", btnNavPurchases);
     }
 
     @FXML
     public void handleNavUsage(ActionEvent event) {
-        loadView("/view/07-usage.fxml", "Ingredient Consumption per Batch");
+        loadView("/view/07-usage.fxml", "Ingredient Consumption per Batch", btnNavUsage);
     }
 
     @FXML
     public void handleNavOutletSales(ActionEvent event) {
-        loadView("/view/08-outlet-sales.fxml", "Bakery Outlet Point of Sale (POS)");
+        loadView("/view/08-outlet-sales.fxml", "Bakery Outlet Point of Sale (POS)", btnNavOutletSales);
     }
 
     @FXML
     public void handleNavPacking(ActionEvent event) {
-        loadView("/view/09-packing-dispatch.fxml", "Shop Packing & Delivery Dispatch");
+        loadView("/view/09-packing-dispatch.fxml", "Shop Packing & Delivery Dispatch", btnNavPacking);
     }
 
     @FXML
     public void handleNavDeliveries(ActionEvent event) {
-        loadView("/view/10-deliveries.fxml", "Delivery Route & Fleet Management");
+        loadView("/view/10-deliveries.fxml", "Delivery Route & Fleet Management", btnNavDeliveries);
     }
 
     @FXML
     public void handleNavSpecialOrders(ActionEvent event) {
-        loadView("/view/11-special-orders.fxml", "Wedding Cakes & Custom Special Orders");
+        loadView("/view/11-special-orders.fxml", "Wedding Cakes & Custom Special Orders", btnNavSpecialOrders);
     }
 
     @FXML
     public void handleNavLeftovers(ActionEvent event) {
-        loadView("/view/12-leftovers.fxml", "Leftover Bread & Bread Crumb Production");
+        loadView("/view/12-leftovers.fxml", "Leftover Bread & Bread Crumb Production", btnNavLeftovers);
     }
 
     @FXML
     public void handleNavEmployees(ActionEvent event) {
-        loadView("/view/13-employees.fxml", "Staff Personnel & User Access Accounts");
+        loadView("/view/13-employees.fxml", "Staff Personnel & User Access Accounts", btnNavEmployees);
     }
 
     @FXML
     public void handleNavReports(ActionEvent event) {
-        loadView("/view/14-reports.fxml", "Business Intelligence Reports & Analytics");
+        loadView("/view/14-reports.fxml", "Business Intelligence Reports & Analytics", btnNavReports);
     }
 
     @FXML
