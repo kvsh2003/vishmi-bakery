@@ -156,6 +156,12 @@ public class QueryDAOImpl implements QueryDAO {
             dto.setLowStockIngredients(rsStock.getInt("low_count"));
         }
 
+        // 5. Pending and confirmed special orders count
+        ResultSet rsSpec = SQLUtil.executeQuery("SELECT COUNT(*) AS total_special FROM special_order WHERE status IN ('PENDING', 'CONFIRMED')");
+        if (rsSpec.next()) {
+            dto.setSpecialOrders(rsSpec.getInt("total_special"));
+        }
+
         return dto;
     }
 }

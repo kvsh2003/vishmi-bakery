@@ -446,3 +446,72 @@
     -fx-background-radius: 4px;
 }
 
+/* ==========================================
+   11. Executive Dashboard & Quick Operations
+   ========================================== */
+.quick-action-bar {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 10px;
+    -fx-border-color: #DFE5E1;
+    -fx-border-radius: 10px;
+    -fx-border-width: 1px;
+    -fx-padding: 10px 16px;
+    -fx-effect: dropshadow(gaussian, rgba(16, 38, 27, 0.04), 8, 0.1, 0, 2);
+}
+
+.quick-action-btn {
+    -fx-background-color: #F0F6F2;
+    -fx-text-fill: #1A4731;
+    -fx-font-size: 12px;
+    -fx-font-weight: 700;
+    -fx-padding: 7px 13px;
+    -fx-background-radius: 18px;
+    -fx-border-color: #C6DECF;
+    -fx-border-radius: 18px;
+    -fx-border-width: 1px;
+    -fx-cursor: hand;
+}
+
+.quick-action-btn:hover {
+    -fx-background-color: #1A4731;
+    -fx-text-fill: #FFFFFF;
+    -fx-border-color: #1A4731;
+    -fx-effect: dropshadow(gaussian, rgba(26, 71, 49, 0.25), 6, 0.1, 0, 2);
+}
+
+.metric-card-interactive {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 10px;
+    -fx-border-color: #DFE5E1;
+    -fx-border-radius: 10px;
+    -fx-border-width: 1px;
+    -fx-padding: 14px 16px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(16, 38, 27, 0.05), 8, 0.1, 0, 2);
+}
+
+.metric-card-interactive:hover {
+    -fx-border-color: #266043;
+    -fx-background-color: #FAFCFA;
+    -fx-effect: dropshadow(gaussian, rgba(26, 71, 49, 0.15), 10, 0.15, 0, 4);
+}
+
+.metric-nav-link {
+    -fx-font-size: 11px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #266043;
+    -fx-cursor: hand;
+}
+
+.metric-nav-link:hover {
+    -fx-text-fill: #113423;
+    -fx-underline: true;
+}
+
+.badge-tag {
+    -fx-padding: 3px 9px;
+    -fx-background-radius: 12px;
+    -fx-font-size: 11px;
+    -fx-font-weight: 700;
+}
+

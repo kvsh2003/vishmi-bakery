@@ -7,16 +7,18 @@ public class DashboardSummaryDTO {
     private int unitsProducedToday;
     private int pendingDeliveries;
     private int lowStockIngredients;
+    private int specialOrders;
 
     public DashboardSummaryDTO() {
         this.todaySales = BigDecimal.ZERO;
     }
 
-    public DashboardSummaryDTO(BigDecimal todaySales, int unitsProducedToday, int pendingDeliveries, int lowStockIngredients) {
+    public DashboardSummaryDTO(BigDecimal todaySales, int unitsProducedToday, int pendingDeliveries, int lowStockIngredients, int specialOrders) {
         this.todaySales = todaySales;
         this.unitsProducedToday = unitsProducedToday;
         this.pendingDeliveries = pendingDeliveries;
         this.lowStockIngredients = lowStockIngredients;
+        this.specialOrders = specialOrders;
     }
 
     public BigDecimal getTodaySales() { return todaySales; }
@@ -30,4 +32,7 @@ public class DashboardSummaryDTO {
 
     public int getLowStockIngredients() { return lowStockIngredients; }
     public void setLowStockIngredients(int lowStockIngredients) { this.lowStockIngredients = lowStockIngredients; }
+
+    public int getSpecialOrders() { return specialOrders; }
+    public void setSpecialOrders(int specialOrders) { this.specialOrders = specialOrders; }
 }

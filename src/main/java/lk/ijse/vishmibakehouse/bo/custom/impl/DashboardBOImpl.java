@@ -8,7 +8,9 @@ import lk.ijse.vishmibakehouse.dao.custom.ProductDAO;
 import lk.ijse.vishmibakehouse.dao.custom.ProductionBatchDAO;
 import lk.ijse.vishmibakehouse.dao.custom.QueryDAO;
 import lk.ijse.vishmibakehouse.dto.DashboardSummaryDTO;
+import lk.ijse.vishmibakehouse.dto.DeliverySummaryDTO;
 import lk.ijse.vishmibakehouse.dto.IngredientStockDTO;
+import lk.ijse.vishmibakehouse.dto.ProductAvailabilityDTO;
 import lk.ijse.vishmibakehouse.dto.ProductionBatchDTO;
 import lk.ijse.vishmibakehouse.entity.ProductionBatch;
 
@@ -62,5 +64,15 @@ public class DashboardBOImpl implements DashboardBO {
     @Override
     public List<IngredientStockDTO> getLowStockAlerts() throws SQLException {
         return queryDAO.getLowStockAlerts();
+    }
+
+    @Override
+    public List<ProductAvailabilityDTO> getProductAvailability() throws SQLException {
+        return queryDAO.getProductAvailabilityList();
+    }
+
+    @Override
+    public List<DeliverySummaryDTO> getRecentDeliveries() throws SQLException {
+        return queryDAO.getDeliverySummaries();
     }
 }

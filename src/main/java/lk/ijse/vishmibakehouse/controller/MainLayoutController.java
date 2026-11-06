@@ -15,6 +15,12 @@ import java.io.IOException;
 
 public class MainLayoutController {
 
+    private static MainLayoutController instance;
+
+    public static MainLayoutController getInstance() {
+        return instance;
+    }
+
     @FXML
     private Label lblPageHeader;
 
@@ -59,6 +65,7 @@ public class MainLayoutController {
 
     @FXML
     public void initialize() {
+        instance = this;
         NavigationUtil.setContentPane(centerContentPane);
         AlertUtil.setNotificationContainer(notificationBox);
 
