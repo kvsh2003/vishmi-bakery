@@ -113,10 +113,18 @@ public class ProductsController {
     public void handleSave(ActionEvent event) {
         if (!validateForm()) return;
 
+        String name = txtName.getText().trim();
         try {
+            for (ProductDTO existing : productBO.getAllProducts()) {
+                if (existing.getName().trim().equalsIgnoreCase(name)) {
+                    AlertUtil.showWarning("Duplicate Product", "A product named '" + name + "' already exists in catalog!");
+                    return;
+                }
+            }
+
             ProductDTO dto = new ProductDTO(
                     0,
-                    txtName.getText().trim(),
+                    name,
                     txtCategory.getText().trim(),
                     cmbUnit.getValue(),
                     new BigDecimal(txtPrice.getText().trim()),
@@ -145,10 +153,18 @@ public class ProductsController {
         }
         if (!validateForm()) return;
 
+        String name = txtName.getText().trim();
         try {
+            for (ProductDTO existing : productBO.getAllProducts()) {
+                if (existing.getProductId() != selectedProductId && existing.getName().trim().equalsIgnoreCase(name)) {
+                    AlertUtil.showWarning("Duplicate Product", "Another product named '" + name + "' already exists in catalog!");
+                    return;
+                }
+            }
+
             ProductDTO dto = new ProductDTO(
                     selectedProductId,
-                    txtName.getText().trim(),
+                    name,
                     txtCategory.getText().trim(),
                     cmbUnit.getValue(),
                     new BigDecimal(txtPrice.getText().trim()),

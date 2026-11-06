@@ -116,10 +116,18 @@ public class IngredientsController {
     public void handleSave(ActionEvent event) {
         if (!validateForm()) return;
 
+        String name = txtName.getText().trim();
         try {
+            for (IngredientStockDTO existing : ingredientBO.getIngredientStockList()) {
+                if (existing.getName().trim().equalsIgnoreCase(name)) {
+                    AlertUtil.showWarning("Duplicate Ingredient", "An ingredient named '" + name + "' already exists in inventory!");
+                    return;
+                }
+            }
+
             IngredientDTO dto = new IngredientDTO(
                     0,
-                    txtName.getText().trim(),
+                    name,
                     cmbUnit.getValue(),
                     new BigDecimal(txtReorderLevel.getText().trim()),
                     chkActive.isSelected()
@@ -145,10 +153,18 @@ public class IngredientsController {
         }
         if (!validateForm()) return;
 
+        String name = txtName.getText().trim();
         try {
+            for (IngredientStockDTO existing : ingredientBO.getIngredientStockList()) {
+                if (existing.getIngredientId() != selectedIngredientId && existing.getName().trim().equalsIgnoreCase(name)) {
+                    AlertUtil.showWarning("Duplicate Ingredient", "Another ingredient named '" + name + "' already exists in inventory!");
+                    return;
+                }
+            }
+
             IngredientDTO dto = new IngredientDTO(
                     selectedIngredientId,
-                    txtName.getText().trim(),
+                    name,
                     cmbUnit.getValue(),
                     new BigDecimal(txtReorderLevel.getText().trim()),
                     chkActive.isSelected()

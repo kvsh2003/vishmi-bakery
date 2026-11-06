@@ -20,6 +20,11 @@ public class ProductBOImpl implements ProductBO {
 
     @Override
     public boolean saveProduct(ProductDTO dto) throws SQLException {
+        for (Product p : productDAO.findAll()) {
+            if (p.getName().trim().equalsIgnoreCase(dto.getName().trim())) {
+                throw new SQLException("A product with the name '" + dto.getName().trim() + "' already exists!");
+            }
+        }
         return productDAO.save(new Product(
                 0, dto.getName(), dto.getCategory(), dto.getUnit(), dto.getSellingPrice(), dto.isActive()
         ));
@@ -27,6 +32,11 @@ public class ProductBOImpl implements ProductBO {
 
     @Override
     public boolean updateProduct(ProductDTO dto) throws SQLException {
+        for (Product p : productDAO.findAll()) {
+            if (p.getProductId() != dto.getProductId() && p.getName().trim().equalsIgnoreCase(dto.getName().trim())) {
+                throw new SQLException("Another product with the name '" + dto.getName().trim() + "' already exists!");
+            }
+        }
         return productDAO.update(new Product(
                 dto.getProductId(), dto.getName(), dto.getCategory(), dto.getUnit(), dto.getSellingPrice(), dto.isActive()
         ));
