@@ -96,6 +96,8 @@ public class UsageController {
             }
             lblAvailableStock.setText("0.000");
             currentStockAvailable = BigDecimal.ZERO;
+        } catch (NumberFormatException e) {
+            AlertUtil.showWarning("Invalid Quantity", "Please enter a valid numeric quantity.");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -116,6 +118,8 @@ public class UsageController {
                 @Override public EmployeeDTO fromString(String string) { return null; }
             });
             if (!employees.isEmpty()) cmbEmployee.getSelectionModel().selectFirst();
+        } catch (NumberFormatException e) {
+            AlertUtil.showWarning("Invalid Quantity", "Please enter a valid numeric quantity.");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -125,6 +129,8 @@ public class UsageController {
         try {
             List<IngredientUsageDTO> list = productionBO.getAllUsages();
             tblUsages.setItems(FXCollections.observableArrayList(list));
+        } catch (NumberFormatException e) {
+            AlertUtil.showWarning("Invalid Quantity", "Please enter a valid numeric quantity.");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -173,6 +179,8 @@ public class UsageController {
                 handleClear(null);
                 loadUsageTable();
             }
+        } catch (NumberFormatException e) {
+            AlertUtil.showWarning("Invalid Quantity", "Please enter a valid numeric quantity.");
         } catch (SQLException e) {
             e.printStackTrace();
             AlertUtil.showError("Database Error", e.getMessage());

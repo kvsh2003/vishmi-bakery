@@ -90,6 +90,8 @@ public class ProductsController {
         try {
             List<ProductDTO> list = productBO.getAllProducts();
             tblProducts.setItems(FXCollections.observableArrayList(list));
+        } catch (NumberFormatException e) {
+            AlertUtil.showWarning("Invalid Price", "Please enter a valid numeric selling price.");
         } catch (SQLException e) {
             e.printStackTrace();
             AlertUtil.showError("Data Error", "Failed to load products: " + e.getMessage());
@@ -100,6 +102,8 @@ public class ProductsController {
         try {
             List<ProductDTO> list = keyword.isEmpty() ? productBO.getAllProducts() : productBO.searchProducts(keyword);
             tblProducts.setItems(FXCollections.observableArrayList(list));
+        } catch (NumberFormatException e) {
+            AlertUtil.showWarning("Invalid Price", "Please enter a valid numeric selling price.");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -125,6 +129,8 @@ public class ProductsController {
             } else {
                 AlertUtil.showError("Save Failed", "Could not save the product record.");
             }
+        } catch (NumberFormatException e) {
+            AlertUtil.showWarning("Invalid Price", "Please enter a valid numeric selling price.");
         } catch (SQLException e) {
             e.printStackTrace();
             AlertUtil.showError("Database Error", e.getMessage());
@@ -155,6 +161,8 @@ public class ProductsController {
             } else {
                 AlertUtil.showError("Update Failed", "Could not update product details.");
             }
+        } catch (NumberFormatException e) {
+            AlertUtil.showWarning("Invalid Price", "Please enter a valid numeric selling price.");
         } catch (SQLException e) {
             e.printStackTrace();
             AlertUtil.showError("Database Error", e.getMessage());
@@ -174,7 +182,9 @@ public class ProductsController {
                     handleClear(null);
                     loadTableData();
                 }
-            } catch (SQLException e) {
+            } catch (NumberFormatException e) {
+            AlertUtil.showWarning("Invalid Price", "Please enter a valid numeric selling price.");
+        } catch (SQLException e) {
                 e.printStackTrace();
                 AlertUtil.showError("Database Error", e.getMessage());
             }

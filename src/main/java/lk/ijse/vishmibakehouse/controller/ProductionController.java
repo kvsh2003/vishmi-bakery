@@ -161,6 +161,8 @@ public class ProductionController {
                 handleClear(null);
                 loadTableData();
             }
+        } catch (NumberFormatException e) {
+            AlertUtil.showWarning("Invalid Number Format", "Please enter valid numeric quantities.");
         } catch (SQLException e) {
             e.printStackTrace();
             AlertUtil.showError("Database Error", e.getMessage());
@@ -196,6 +198,8 @@ public class ProductionController {
                 handleClear(null);
                 loadTableData();
             }
+        } catch (NumberFormatException e) {
+            AlertUtil.showWarning("Invalid Number Format", "Please enter valid numeric quantities.");
         } catch (SQLException e) {
             e.printStackTrace();
             AlertUtil.showError("Database Error", e.getMessage());
@@ -222,6 +226,8 @@ public class ProductionController {
                 handleClear(null);
                 loadTableData();
             }
+        } catch (NumberFormatException e) {
+            AlertUtil.showWarning("Invalid Number Format", "Please enter valid numeric quantities.");
         } catch (SQLException e) {
             e.printStackTrace();
             AlertUtil.showError("Database Error", e.getMessage());
@@ -256,6 +262,13 @@ public class ProductionController {
         if (!ValidationUtil.isPositiveDecimal(txtPlannedQty.getText())) {
             AlertUtil.showWarning("Validation Error", "Planned quantity must be a positive number.");
             return false;
+        }
+        String actualStr = txtActualQty.getText();
+        if (actualStr != null && !actualStr.trim().isEmpty()) {
+            if (!ValidationUtil.isNonNegativeDecimal(actualStr)) {
+                AlertUtil.showWarning("Validation Error", "Actual quantity must be a valid non-negative number.");
+                return false;
+            }
         }
         return true;
     }

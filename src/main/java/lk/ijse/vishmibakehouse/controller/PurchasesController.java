@@ -106,6 +106,8 @@ public class PurchasesController {
                 @Override public EmployeeDTO fromString(String string) { return null; }
             });
             if (!employees.isEmpty()) cmbEmployee.getSelectionModel().selectFirst();
+        } catch (NumberFormatException e) {
+            AlertUtil.showWarning("Invalid Number Format", "Please enter valid numeric values for quantity and unit cost.");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -115,6 +117,8 @@ public class PurchasesController {
         try {
             List<IngredientPurchaseDTO> list = ingredientBO.getAllPurchases();
             tblPurchases.setItems(FXCollections.observableArrayList(list));
+        } catch (NumberFormatException e) {
+            AlertUtil.showWarning("Invalid Number Format", "Please enter valid numeric values for quantity and unit cost.");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -158,6 +162,8 @@ public class PurchasesController {
                 handleClear(null);
                 loadPurchasesTable();
             }
+        } catch (NumberFormatException e) {
+            AlertUtil.showWarning("Invalid Number Format", "Please enter valid numeric values for quantity and unit cost.");
         } catch (SQLException e) {
             e.printStackTrace();
             AlertUtil.showError("Database Error", e.getMessage());

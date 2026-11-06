@@ -104,6 +104,8 @@ public class IngredientsController {
         try {
             List<IngredientStockDTO> list = ingredientBO.getIngredientStockList();
             tblIngredients.setItems(FXCollections.observableArrayList(list));
+        } catch (NumberFormatException e) {
+            AlertUtil.showWarning("Invalid Number Format", "Please enter a valid numeric value for reorder level.");
         } catch (SQLException e) {
             e.printStackTrace();
             AlertUtil.showError("Database Error", "Failed to load ingredient inventory: " + e.getMessage());
@@ -127,6 +129,8 @@ public class IngredientsController {
                 handleClear(null);
                 loadStockTable();
             }
+        } catch (NumberFormatException e) {
+            AlertUtil.showWarning("Invalid Number Format", "Please enter a valid numeric value for reorder level.");
         } catch (SQLException e) {
             e.printStackTrace();
             AlertUtil.showError("Database Error", e.getMessage());
@@ -154,6 +158,8 @@ public class IngredientsController {
                 handleClear(null);
                 loadStockTable();
             }
+        } catch (NumberFormatException e) {
+            AlertUtil.showWarning("Invalid Number Format", "Please enter a valid numeric value for reorder level.");
         } catch (SQLException e) {
             e.printStackTrace();
             AlertUtil.showError("Database Error", e.getMessage());
@@ -173,7 +179,9 @@ public class IngredientsController {
                     handleClear(null);
                     loadStockTable();
                 }
-            } catch (SQLException e) {
+            } catch (NumberFormatException e) {
+            AlertUtil.showWarning("Invalid Number Format", "Please enter a valid numeric value for reorder level.");
+        } catch (SQLException e) {
                 e.printStackTrace();
                 AlertUtil.showError("Database Error", e.getMessage());
             }
