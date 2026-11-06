@@ -83,12 +83,10 @@ public class AlertUtil {
             case SUCCESS, INFO -> Alert.AlertType.INFORMATION;
         };
         Alert alert = new Alert(alertType);
-        if (owner != null) {
-            alert.initOwner(owner);
-        }
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);
+        DialogUtil.styleAndCenter(alert);
         alert.showAndWait();
     }
 
@@ -182,13 +180,10 @@ public class AlertUtil {
 
     public static boolean showConfirmation(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        Stage owner = NavigationUtil.getPrimaryStage();
-        if (owner != null) {
-            alert.initOwner(owner);
-        }
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);
+        DialogUtil.styleAndCenter(alert);
         Optional<ButtonType> result = alert.showAndWait();
         return result.isPresent() && result.get() == ButtonType.OK;
     }

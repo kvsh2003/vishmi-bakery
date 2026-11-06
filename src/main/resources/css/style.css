@@ -515,3 +515,72 @@
     -fx-font-weight: 700;
 }
 
+/* ==========================================
+   12. Modern Modal Dialogs
+   ========================================== */
+.dialog-pane {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #DFE5E1;
+    -fx-border-width: 1px;
+    -fx-border-radius: 12px;
+    -fx-background-radius: 12px;
+    -fx-effect: dropshadow(gaussian, rgba(16, 38, 27, 0.22), 24, 0.15, 0, 8);
+    -fx-padding: 0;
+}
+
+.dialog-pane > .header-panel {
+    -fx-background-color: #F7FAF8;
+    -fx-border-color: #DFE5E1;
+    -fx-border-width: 0 0 1px 0;
+    -fx-padding: 18px 24px;
+    -fx-background-radius: 12px 12px 0 0;
+}
+
+.dialog-pane:header *.header-panel *.label {
+    -fx-font-size: 16px;
+    -fx-font-weight: 800;
+    -fx-text-fill: #143D2B;
+}
+
+.dialog-pane > .content {
+    -fx-padding: 22px 24px;
+    -fx-background-color: #FFFFFF;
+}
+
+.dialog-pane > .button-bar {
+    -fx-padding: 14px 24px;
+    -fx-background-color: #F7FAF8;
+    -fx-border-color: #DFE5E1;
+    -fx-border-width: 1px 0 0 0;
+    -fx-background-radius: 0 0 12px 12px;
+}
+
+.dialog-pane .button {
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #22332A;
+    -fx-font-weight: 600;
+    -fx-border-color: #CBD5CE;
+    -fx-border-radius: 7px;
+    -fx-background-radius: 7px;
+    -fx-padding: 8px 18px;
+    -fx-cursor: hand;
+    -fx-font-size: 13px;
+}
+
+.dialog-pane .button:default {
+    -fx-background-color: #1A4731;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-weight: 700;
+    -fx-border-color: #1A4731;
+    -fx-effect: dropshadow(gaussian, rgba(26, 71, 49, 0.25), 6, 0.1, 0, 2);
+}
+
+.dialog-pane .button:default:hover {
+    -fx-background-color: #143726;
+}
+
+.dialog-pane .button:hover {
+    -fx-background-color: #F1F5F2;
+    -fx-border-color: #B5C3B9;
+}
+

@@ -13,6 +13,7 @@ import lk.ijse.vishmibakehouse.dto.CustomerDTO;
 import lk.ijse.vishmibakehouse.dto.SpecialOrderDTO;
 import lk.ijse.vishmibakehouse.dto.SpecialOrderItemDTO;
 import lk.ijse.vishmibakehouse.util.AlertUtil;
+import lk.ijse.vishmibakehouse.util.DialogUtil;
 import lk.ijse.vishmibakehouse.util.SecurityContext;
 import lk.ijse.vishmibakehouse.util.ValidationUtil;
 
@@ -284,6 +285,8 @@ public class SpecialOrdersController {
         dialog.setTitle("Update Order Status");
         dialog.setHeaderText("Change status for Special Order #" + selected.getSpecialOrderId());
         dialog.setContentText("Select new status:");
+
+        DialogUtil.styleAndCenter(dialog);
 
         Optional<String> result = dialog.showAndWait();
         result.ifPresent(status -> {

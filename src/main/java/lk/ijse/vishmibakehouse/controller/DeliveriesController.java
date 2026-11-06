@@ -7,6 +7,7 @@ import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.util.StringConverter;
 import lk.ijse.vishmibakehouse.bo.BOFactory;
 import lk.ijse.vishmibakehouse.bo.BOTypes;
@@ -14,6 +15,7 @@ import lk.ijse.vishmibakehouse.bo.custom.DeliveryBO;
 import lk.ijse.vishmibakehouse.bo.custom.EmployeeBO;
 import lk.ijse.vishmibakehouse.dto.*;
 import lk.ijse.vishmibakehouse.util.AlertUtil;
+import lk.ijse.vishmibakehouse.util.DialogUtil;
 import lk.ijse.vishmibakehouse.util.ValidationUtil;
 
 import java.math.BigDecimal;
@@ -182,30 +184,45 @@ public class DeliveriesController {
     @FXML
     public void handleManageShops(ActionEvent event) {
         Dialog<ButtonType> dialog = new Dialog<>();
-        dialog.setTitle("Manage Wholesale Shops");
+        dialog.setTitle("Wholesale Destination Shops");
         dialog.setHeaderText("Add New Wholesale Destination Shop");
 
-        GridPane grid = new GridPane();
-        grid.setHgap(10);
-        grid.setVgap(10);
-        grid.setPadding(new Insets(20, 20, 20, 20));
+        VBox form = new VBox(12);
+        form.setPrefWidth(420);
+        form.setPadding(new Insets(10, 0, 10, 0));
 
+        VBox boxName = new VBox(4);
+        Label lblName = new Label("Shop Name *");
+        lblName.getStyleClass().add("field-label");
         TextField txtShopName = new TextField();
-        txtShopName.setPromptText("Shop Name");
+        txtShopName.setPromptText("e.g. Lanka Supermart");
+        boxName.getChildren().addAll(lblName, txtShopName);
+
+        VBox boxPhone = new VBox(4);
+        Label lblPhone = new Label("Contact Phone Number");
+        lblPhone.getStyleClass().add("field-label");
         TextField txtShopPhone = new TextField();
-        txtShopPhone.setPromptText("Phone Number");
+        txtShopPhone.setPromptText("e.g. 011-2345678");
+        boxPhone.getChildren().addAll(lblPhone, txtShopPhone);
+
+        VBox boxAddress = new VBox(4);
+        Label lblAddress = new Label("Full Delivery Address *");
+        lblAddress.getStyleClass().add("field-label");
         TextField txtShopAddress = new TextField();
-        txtShopAddress.setPromptText("Full Address");
+        txtShopAddress.setPromptText("e.g. 142 High Level Road, Nugegoda");
+        boxAddress.getChildren().addAll(lblAddress, txtShopAddress);
 
-        grid.add(new Label("Shop Name:"), 0, 0);
-        grid.add(txtShopName, 1, 0);
-        grid.add(new Label("Phone:"), 0, 1);
-        grid.add(txtShopPhone, 1, 1);
-        grid.add(new Label("Address:"), 0, 2);
-        grid.add(txtShopAddress, 1, 2);
+        form.getChildren().addAll(boxName, boxPhone, boxAddress);
 
-        dialog.getDialogPane().setContent(grid);
+        dialog.getDialogPane().setContent(form);
         dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+
+        Button btnOk = (Button) dialog.getDialogPane().lookupButton(ButtonType.OK);
+        if (btnOk != null) {
+            btnOk.setText("Save Shop");
+        }
+
+        DialogUtil.styleAndCenter(dialog);
 
         Optional<ButtonType> result = dialog.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
@@ -232,26 +249,38 @@ public class DeliveriesController {
     @FXML
     public void handleManageVehicles(ActionEvent event) {
         Dialog<ButtonType> dialog = new Dialog<>();
-        dialog.setTitle("Manage Delivery Vehicles");
+        dialog.setTitle("Delivery Fleet Registration");
         dialog.setHeaderText("Register Delivery Three-Wheeler");
 
-        GridPane grid = new GridPane();
-        grid.setHgap(10);
-        grid.setVgap(10);
-        grid.setPadding(new Insets(20, 20, 20, 20));
+        VBox form = new VBox(12);
+        form.setPrefWidth(420);
+        form.setPadding(new Insets(10, 0, 10, 0));
 
+        VBox boxReg = new VBox(4);
+        Label lblReg = new Label("Registration No *");
+        lblReg.getStyleClass().add("field-label");
         TextField txtRegNo = new TextField();
         txtRegNo.setPromptText("e.g. WP BC-4567");
+        boxReg.getChildren().addAll(lblReg, txtRegNo);
+
+        VBox boxModel = new VBox(4);
+        Label lblModel = new Label("Vehicle Model *");
+        lblModel.getStyleClass().add("field-label");
         TextField txtModel = new TextField();
         txtModel.setPromptText("e.g. Bajaj RE 4-Stroke Green");
+        boxModel.getChildren().addAll(lblModel, txtModel);
 
-        grid.add(new Label("Registration No:"), 0, 0);
-        grid.add(txtRegNo, 1, 0);
-        grid.add(new Label("Vehicle Model:"), 0, 1);
-        grid.add(txtModel, 1, 1);
+        form.getChildren().addAll(boxReg, boxModel);
 
-        dialog.getDialogPane().setContent(grid);
+        dialog.getDialogPane().setContent(form);
         dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+
+        Button btnOk = (Button) dialog.getDialogPane().lookupButton(ButtonType.OK);
+        if (btnOk != null) {
+            btnOk.setText("Register Vehicle");
+        }
+
+        DialogUtil.styleAndCenter(dialog);
 
         Optional<ButtonType> result = dialog.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
