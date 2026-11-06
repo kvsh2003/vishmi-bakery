@@ -97,6 +97,20 @@ public class PackingDispatchController {
         }
     }
 
+    private BigDecimal getAvailableStock(long productId) {
+        try {
+            List<ProductAvailabilityDTO> availList = productBO.getProductAvailability();
+            for (ProductAvailabilityDTO p : availList) {
+                if (p.getProductId() == productId) {
+                    return p.getAvailableQty() != null ? p.getAvailableQty() : BigDecimal.ZERO;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return BigDecimal.ZERO;
+    }
+
     @FXML
     public void handleAddItem(ActionEvent event) {
         ProductDTO prod = cmbProduct.getValue();
@@ -110,6 +124,31 @@ public class PackingDispatchController {
         }
 
         BigDecimal qty = new BigDecimal(txtPackedQty.getText().trim());
+
+        // Enforce stock check: prevent packing items that are out of stock
+        BigDecimal available = getAvailableStock(prod.getProductId());
+        if (available.compareTo(BigDecimal.ZERO) <= 0) {
+            AlertUtil.showError("Out of Stock", "Product '" + prod.getName() + "' is OUT OF STOCK! Cannot pack for delivery.");
+            return;
+        }
+
+        BigDecimal alreadyPacked = BigDecimal.ZERO;
+        for (DeliveryItemDTO item : packingList) {
+            if (item.getProductId() == prod.getProductId()) {
+                alreadyPacked = item.getPackedQty();
+                break;
+            }
+        }
+
+        if (alreadyPacked.add(qty).compareTo(available) > 0) {
+            BigDecimal maxCanPack = available.subtract(alreadyPacked);
+            AlertUtil.showError("Insufficient Stock",
+                    "Cannot pack " + qty + " of '" + prod.getName() + "'.\n" +
+                    "Available Stock: " + available + " " + prod.getUnit() + "\n" +
+                    (alreadyPacked.compareTo(BigDecimal.ZERO) > 0 ? "Already in crate: " + alreadyPacked + " " + prod.getUnit() + "\n" : "") +
+                    "Maximum you can still pack: " + maxCanPack + " " + prod.getUnit());
+            return;
+        }
 
         for (DeliveryItemDTO item : packingList) {
             if (item.getProductId() == prod.getProductId()) {

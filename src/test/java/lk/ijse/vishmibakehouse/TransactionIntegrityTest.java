@@ -40,6 +40,26 @@ public class TransactionIntegrityTest {
     }
 
     @Test
+    @DisplayName("Test Sale Placement Rejection When Stock Is Insufficient")
+    public void testSalePlacementRejectionOnInsufficientStock() {
+        SaleBO saleBO = BOFactory.getInstance().getBO(BOTypes.SALE);
+
+        SaleDTO excessSale = new SaleDTO();
+        excessSale.setCashierEmployeeId(7);
+        excessSale.setSoldAt(new Timestamp(System.currentTimeMillis()));
+        excessSale.setCashReceived(new BigDecimal("50000000.00"));
+
+        // Requesting 999,999 units exceeds any available stock in the bakery
+        excessSale.getItems().add(new SaleItemDTO(0, 0, 1, "White Bread 450g", new BigDecimal("999999.0"), new BigDecimal("180.0"), new BigDecimal("179999820.0")));
+
+        SQLException exception = assertThrows(SQLException.class, () -> {
+            saleBO.placeSale(excessSale);
+        }, "Selling items exceeding available stock must throw SQLException and roll back");
+
+        assertTrue(exception.getMessage().contains("insufficient stock"), "Exception message should indicate insufficient stock");
+    }
+
+    @Test
     @DisplayName("Test Leftover Lot Overconsumption Validation")
     public void testLeftoverExcessiveConsumptionRejection() {
         LeftoverBO leftoverBO = BOFactory.getInstance().getBO(BOTypes.LEFTOVER);

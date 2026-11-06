@@ -3,6 +3,7 @@ package lk.ijse.vishmibakehouse.bo.custom.impl;
 import lk.ijse.vishmibakehouse.bo.custom.SaleBO;
 import lk.ijse.vishmibakehouse.dao.DAOFactory;
 import lk.ijse.vishmibakehouse.dao.DAOTypes;
+import lk.ijse.vishmibakehouse.dao.SQLUtil;
 import lk.ijse.vishmibakehouse.dao.custom.EmployeeDAO;
 import lk.ijse.vishmibakehouse.dao.custom.ProductDAO;
 import lk.ijse.vishmibakehouse.dao.custom.SaleDAO;
@@ -15,6 +16,7 @@ import lk.ijse.vishmibakehouse.entity.SaleItem;
 
 import java.math.BigDecimal;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +34,22 @@ public class SaleBOImpl implements SaleBO {
         boolean originalAutoCommit = connection.getAutoCommit();
         try {
             connection.setAutoCommit(false);
+
+            // 1. Enforce strict stock check: Prevent selling products with insufficient stock
+            for (SaleItemDTO itemDTO : saleDTO.getItems()) {
+                ResultSet rs = SQLUtil.executeQuery("SELECT name, available_qty FROM v_product_availability WHERE product_id = ?", itemDTO.getProductId());
+                if (rs.next()) {
+                    String prodName = rs.getString("name");
+                    BigDecimal available = rs.getBigDecimal("available_qty");
+                    if (available == null || itemDTO.getQuantity().compareTo(available) > 0) {
+                        connection.rollback();
+                        throw new SQLException("Cannot complete transaction: Product '" + prodName + "' has insufficient stock! (Available: " + (available != null ? available : BigDecimal.ZERO) + ", Requested: " + itemDTO.getQuantity() + ")");
+                    }
+                } else {
+                    connection.rollback();
+                    throw new SQLException("Product ID #" + itemDTO.getProductId() + " not found in catalog availability records.");
+                }
+            }
 
             Sale sale = new Sale(
                     0,

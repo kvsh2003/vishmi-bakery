@@ -70,7 +70,7 @@ public class ProductionController {
     @FXML
     public void initialize() {
         dtProducedOn.setValue(LocalDate.now());
-        cmbStatus.setItems(FXCollections.observableArrayList("PLANNED", "IN_PROGRESS", "COMPLETED", "CANCELLED"));
+        cmbStatus.setItems(FXCollections.observableArrayList("COMPLETED", "IN_PROGRESS", "PLANNED", "CANCELLED"));
         cmbStatus.getSelectionModel().selectFirst();
 
         colBatchId.setCellValueFactory(new PropertyValueFactory<>("productionBatchId"));
@@ -140,8 +140,21 @@ public class ProductionController {
         if (!validateForm()) return;
 
         try {
-            BigDecimal actual = (txtActualQty.getText() != null && !txtActualQty.getText().trim().isEmpty())
-                    ? new BigDecimal(txtActualQty.getText().trim()) : BigDecimal.ZERO;
+            BigDecimal planned = new BigDecimal(txtPlannedQty.getText().trim());
+            String status = cmbStatus.getValue() != null ? cmbStatus.getValue() : "COMPLETED";
+
+            BigDecimal actual;
+            if (txtActualQty.getText() != null && !txtActualQty.getText().trim().isEmpty()) {
+                actual = new BigDecimal(txtActualQty.getText().trim());
+            } else if ("COMPLETED".equalsIgnoreCase(status)) {
+                actual = planned; // Finished production defaults actual to planned quantity
+            } else {
+                actual = BigDecimal.ZERO;
+            }
+
+            if (actual.compareTo(BigDecimal.ZERO) > 0 && "PLANNED".equalsIgnoreCase(status)) {
+                status = "COMPLETED";
+            }
 
             ProductionBatchDTO dto = new ProductionBatchDTO(
                     0,
@@ -150,14 +163,15 @@ public class ProductionController {
                     cmbEmployee.getValue().getEmployeeId(),
                     "",
                     Date.valueOf(dtProducedOn.getValue()),
-                    new BigDecimal(txtPlannedQty.getText().trim()),
+                    planned,
                     actual,
-                    cmbStatus.getValue()
+                    status
             );
 
             long batchId = productionBO.createProductionBatch(dto);
             if (batchId > 0) {
-                AlertUtil.showInfo("Success", "Production Batch #" + batchId + " logged successfully.");
+                AlertUtil.showInfo("Success", "Production Batch #" + batchId + " logged successfully." +
+                        ("COMPLETED".equalsIgnoreCase(status) ? "\n" + actual + " " + cmbProduct.getValue().getUnit() + " added to available stock!" : ""));
                 handleClear(null);
                 loadTableData();
             }
@@ -178,8 +192,21 @@ public class ProductionController {
         if (!validateForm()) return;
 
         try {
-            BigDecimal actual = (txtActualQty.getText() != null && !txtActualQty.getText().trim().isEmpty())
-                    ? new BigDecimal(txtActualQty.getText().trim()) : BigDecimal.ZERO;
+            BigDecimal planned = new BigDecimal(txtPlannedQty.getText().trim());
+            String status = cmbStatus.getValue() != null ? cmbStatus.getValue() : "COMPLETED";
+
+            BigDecimal actual;
+            if (txtActualQty.getText() != null && !txtActualQty.getText().trim().isEmpty()) {
+                actual = new BigDecimal(txtActualQty.getText().trim());
+            } else if ("COMPLETED".equalsIgnoreCase(status)) {
+                actual = planned;
+            } else {
+                actual = BigDecimal.ZERO;
+            }
+
+            if (actual.compareTo(BigDecimal.ZERO) > 0 && "PLANNED".equalsIgnoreCase(status)) {
+                status = "COMPLETED";
+            }
 
             ProductionBatchDTO dto = new ProductionBatchDTO(
                     selectedBatchId,
@@ -188,13 +215,14 @@ public class ProductionController {
                     cmbEmployee.getValue().getEmployeeId(),
                     "",
                     Date.valueOf(dtProducedOn.getValue()),
-                    new BigDecimal(txtPlannedQty.getText().trim()),
+                    planned,
                     actual,
-                    cmbStatus.getValue()
+                    status
             );
 
             if (productionBO.updateProductionBatch(dto)) {
-                AlertUtil.showInfo("Success", "Production Batch #" + selectedBatchId + " updated successfully.");
+                AlertUtil.showInfo("Success", "Production Batch #" + selectedBatchId + " updated successfully." +
+                        ("COMPLETED".equalsIgnoreCase(status) ? "\nStock availability updated!" : ""));
                 handleClear(null);
                 loadTableData();
             }

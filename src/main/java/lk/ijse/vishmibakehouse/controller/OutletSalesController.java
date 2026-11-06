@@ -89,28 +89,44 @@ public class OutletSalesController {
         cmbProduct.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal != null) {
                 txtUnitPrice.setText(newVal.getSellingPrice().toString());
-                updateAvailableStock(newVal.getProductId());
+                updateAvailableStock(newVal);
             } else {
                 txtUnitPrice.clear();
                 lblAvailableStock.setText("--");
+                lblAvailableStock.setStyle("-fx-font-weight: bold; -fx-text-fill: #1E4D37;");
             }
         });
 
         txtCashReceived.textProperty().addListener((obs, oldVal, newVal) -> calculateChange());
     }
 
-    private void updateAvailableStock(long productId) {
+    private BigDecimal getAvailableStock(long productId) {
         try {
             List<ProductAvailabilityDTO> availList = productBO.getProductAvailability();
             for (ProductAvailabilityDTO p : availList) {
                 if (p.getProductId() == productId) {
-                    lblAvailableStock.setText(p.getAvailableQty() + " " + p.getUnit());
-                    return;
+                    return p.getAvailableQty() != null ? p.getAvailableQty() : BigDecimal.ZERO;
                 }
             }
-            lblAvailableStock.setText("Available");
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+        return BigDecimal.ZERO;
+    }
+
+    private void updateAvailableStock(ProductDTO prod) {
+        if (prod == null) {
+            lblAvailableStock.setText("--");
+            lblAvailableStock.setStyle("-fx-font-weight: bold; -fx-text-fill: #1E4D37;");
+            return;
+        }
+        BigDecimal avail = getAvailableStock(prod.getProductId());
+        if (avail.compareTo(BigDecimal.ZERO) <= 0) {
+            lblAvailableStock.setText("0 " + prod.getUnit() + " (Out of Stock)");
+            lblAvailableStock.setStyle("-fx-font-weight: bold; -fx-text-fill: #DC2626;");
+        } else {
+            lblAvailableStock.setText(avail + " " + prod.getUnit() + " (Available)");
+            lblAvailableStock.setStyle("-fx-font-weight: bold; -fx-text-fill: #166534;");
         }
     }
 
@@ -163,6 +179,40 @@ public class OutletSalesController {
         }
 
         BigDecimal qty = new BigDecimal(txtQuantity.getText().trim());
+
+        // 1. Strict Stock Check: Prevent adding out of stock products to cart
+        BigDecimal available = getAvailableStock(prod.getProductId());
+        if (available.compareTo(BigDecimal.ZERO) <= 0) {
+            AlertUtil.showError("Out of Stock",
+                    "Product '" + prod.getName() + "' is OUT OF STOCK!\n" +
+                    "Cannot add to cart. Please bake or produce new batches first.");
+            return;
+        }
+
+        BigDecimal currentInCart = BigDecimal.ZERO;
+        for (SaleItemDTO item : cartItems) {
+            if (item.getProductId() == prod.getProductId()) {
+                currentInCart = item.getQuantity();
+                break;
+            }
+        }
+
+        BigDecimal totalRequested = currentInCart.add(qty);
+        if (totalRequested.compareTo(available) > 0) {
+            BigDecimal maxAddable = available.subtract(currentInCart);
+            if (maxAddable.compareTo(BigDecimal.ZERO) <= 0) {
+                AlertUtil.showError("Insufficient Stock",
+                        "Cart already contains all available stock (" + available + " " + prod.getUnit() + ") of '" + prod.getName() + "'.");
+            } else {
+                AlertUtil.showError("Insufficient Stock",
+                        "Cannot add " + qty + " " + prod.getUnit() + " of '" + prod.getName() + "'.\n" +
+                        "Available in stock: " + available + " " + prod.getUnit() + "\n" +
+                        "Already in cart: " + currentInCart + " " + prod.getUnit() + "\n" +
+                        "Maximum you can still add: " + maxAddable + " " + prod.getUnit());
+            }
+            return;
+        }
+
         BigDecimal price = prod.getSellingPrice();
         BigDecimal lineTotal = qty.multiply(price);
 
@@ -244,6 +294,19 @@ public class OutletSalesController {
             return;
         }
 
+        // Live double-check: ensure none of the cart items exceed current available stock
+        for (SaleItemDTO item : cartItems) {
+            BigDecimal liveAvail = getAvailableStock(item.getProductId());
+            if (item.getQuantity().compareTo(liveAvail) > 0) {
+                AlertUtil.showError("Transaction Blocked: Insufficient Stock",
+                        "Cannot complete sale for '" + item.getProductName() + "'.\n" +
+                        "Requested in cart: " + item.getQuantity() + "\n" +
+                        "Live available stock: " + liveAvail + "\n" +
+                        "Please adjust cart quantity before proceeding.");
+                return;
+            }
+        }
+
         try {
             SaleDTO sale = new SaleDTO();
             sale.setCashierEmployeeId(cmbCashier.getValue().getEmployeeId());
@@ -265,8 +328,9 @@ public class OutletSalesController {
                         "Total: LKR " + currencyFormat.format(currentNetTotal) + "\n" +
                         "Cash Received: LKR " + currencyFormat.format(cash) + "\n" +
                         "Change: LKR " + currencyFormat.format(change) + "\n\n" +
-                        "Sale has been registered and stock decremented.");
+                        "Stock has been updated automatically.");
                 handleClearOrder(null);
+                loadProducts();
             } else {
                 AlertUtil.showError("Transaction Failed", "Could not complete the sale transaction.");
             }
@@ -280,7 +344,11 @@ public class OutletSalesController {
     public void handleClearOrder(ActionEvent event) {
         cartItems.clear();
         recalculateCart();
+        txtQuantity.clear();
         txtCashReceived.clear();
         lblChange.setText("LKR 0.00");
+        cmbProduct.getSelectionModel().clearSelection();
+        lblAvailableStock.setText("--");
+        lblAvailableStock.setStyle("-fx-font-weight: bold; -fx-text-fill: #1E4D37;");
     }
 }
