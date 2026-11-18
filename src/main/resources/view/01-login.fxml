@@ -30,7 +30,7 @@
                         <Label style="-fx-font-size: 13px; -fx-text-fill: #97BBAA;" text="Production • Sales • Stock • Deliveries" />
                      </children>
                   </VBox>
-                  <Label style="-fx-font-size: 11px; -fx-text-fill: #6E9B85;" text="Vishmi Bakehouse Management System v1.0&#10;HDSE ITS1066 Standalone Edition">
+                  <Label style="-fx-font-size: 11px; -fx-text-fill: #6E9B85;" text="Vishmi Bakehouse Management System">
                      <VBox.margin>
                         <Insets top="120.0" />
                      </VBox.margin>
